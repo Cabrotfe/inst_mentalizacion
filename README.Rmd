@@ -1,0 +1,226 @@
+---
+title: "Análisis instrumentos"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(tidyverse, haven, labelled,naniar,arsenal,psych)
+datos = read_spss("Muchas gracias por participar en este estudio.sav")
+datos = datos[,1:194]
+datos = datos %>% filter(!respondent_id %in% c("118015420988", "118015649969", "118018685347"))
+datos_un = unlabelled(datos)
+datos = datos %>% mutate(across(.cols = 1:16, .fns = function(x){unlabelled(x)}))
+```
+
+# Descripción de los datos:
+
+## Sociodemográficos
+
+### Datos perdidos:
+
+Análisis inicial va a partir por los datos perdidos:
+
+```{r}
+# Descripción datos perdidos ----------------------------------------------
+
+datos = datos %>% rename(acuerdo = q0001, edad = q0002, genero = q0003, educacion = q0004,
+                 estudias = q0005, estudio_actual = q0006)
+
+
+## Nivel sociodemográfico:
+naniar::miss_var_summary(datos[,11:16])
+vis_miss(datos[,11:16])
+```
+
+Se observa que quienes omiten en género, educación y estudio, son las mismas personas. Quienes omiten en estudio actual son quienes no están estudiando actualmente. 
+
+
+
+### Descripción de la muestra:
+
+La variable de estudio actual permite construir una nueva variable dummy, de estudiante universitario (Sí/No), dada la cantidad de personas en la muestra que estudian en la universidad.
+
+```{r, results='asis'}
+datos = datos %>% mutate(universitatio = case_when(
+  educacion == "Educación media completa" &
+    estudias == "Sí" &
+    estudio_actual == "Universitaria"~"Sí",
+  estudias == "No"~"No"))
+
+datos = datos %>% mutate(estudio_actual = ifelse(estudias == "No","No",estudio_actual))
+datos = datos %>% mutate(estudio_actual = factor(estudio_actual, levels = c("No",3,4), labels = c("No","Universitaria", "Postgrado")))
+
+datos$edad = as.numeric(as.character(datos$edad))
+```
+
+
+```{r, results='asis'}
+summary(tableby(~edad+genero+educacion+estudias+estudio_actual, data = datos))
+```
+
+Diferencias entre personas según están estudiando actualmente:
+
+
+```{r, results='asis'}
+summary(tableby(estudio_actual~edad+genero+educacion+estudias, data = datos))
+```
+
+
+
+# Instrumentos de mentalización:
+
+## Datos perdidos:
+
+### Omisiones en MMQ
+
+```{r}
+naniar::miss_var_summary(datos[,17:49])
+vis_miss(datos[,17:49])
+```
+
+Las omisiones son estables en todo el instrumento. 
+
+
+### Omisiones en MentS
+
+```{r}
+naniar::miss_var_summary(datos[,50:77])
+vis_miss(datos[,50:77])
+```
+
+### Omisiones en ambos instrumentos:
+
+```{r}
+vis_miss(datos[,17:77])
+```
+
+
+Las omisiones son estables en todo el instrumento.
+
+
+### Caracterización de las omisiones:
+
+
+```{r}
+datos = datos %>% mutate(omision_mentalizacion = ifelse(
+  is.na(q0008_0001)==T,"sí","no"
+))
+```
+
+
+```{r results='asis'}
+summary(tableby(omision_mentalizacion~edad+genero+educacion+estudias+estudio_actual, data = datos))
+```
+
+
+Hasta el momento los grupos son similares.
+
+## Descripción de los instrumentos:
+
+### Descripción y depuración del MMQ:
+
+El MMQ cuenta con 6 factores, 3 de los cuales dan cuenta de aspectos positivos y 3 de aspectos negativos. No cuenta con ítems invertidos, aunque el contenido es negativo para el caso de los factores negativos (ej. A veces experimento cambios de ánimo que no puedo controlar),
+
+
+
+
+
+```{r}
+nombres_MMQ = labelled::var_label(datos_un[,17:49])
+nombres_MMQ = unlist(nombres_MMQ)
+items_mmq = datos_un %>% select(17:49)
+```
+
+```{r}
+colnames(items_mmq) = nombres_MMQ
+```
+
+```{r fig.height=8,fig.width=9}
+items_mmq %>% gather(key=item,value=respuesta,1:33) %>%
+  filter(is.na(respuesta)==F) %>% 
+  mutate(respuesta = factor(respuesta, levels = c("Totalmente en desacuerdo",
+                            "En desacuerdo",
+                            "Ni de acuerdo ni en desacuerdo",
+                            "De acuerdo",
+                            "Muy de acuerdo"))) %>%
+  count(item,respuesta) %>% group_by(item) %>% 
+  mutate(porc = round(n/sum(n),3)*100) %>% 
+  ggplot(aes(x=item, y=porc, fill=respuesta)) +
+  geom_col() +
+  coord_flip() +
+  theme_bw() +
+  theme(legend.position = "bottom", axis.text.y = element_text(size = 6.5, color = "black")) +
+  guides(fill=guide_legend(nrow=3,byrow=TRUE)) +
+  geom_text(aes(label=str_c(porc,"%")), position = "stack", size=2)
+```
+
+
+### Análisis de subescalas:
+
+El instrumento cuenta con 6 subescalas, compuestas de la siguiente manera:
+
+**Escalas positivas:**
+
+F1 (reflexión): 1,6,8,10,16,17,18,31,32
+
+F2 (ego-strength): 11,22,24,25,26,30
+
+F3 (relational attunement): 4,5,14,21,28
+
+**Escalas negativas:**
+
+F4 (relational discomfort): 9,12,15,27,33
+
+F5 (distrust): 13,19,20,29
+
+F6 (emotional discontrol):2,3,7,23
+
+
+
+
+¿Cuántos factores extraer?
+
+```{r}
+psych::fa.parallel((datos[,17:49]))
+```
+
+Al parecer es una buena solución 6 factores
+
+
+```{r}
+print(fa(datos[,17:49], nfactors = 6,rotate = "oblimin"),cut = .2)
+```
+
+
+### Estructura interna:
+
+**Respecto a reflexibility:** la estructura general se mantiene de forma parcial, el ítem 6 no está asociado al factor.
+
+**Respecto a ego-strength:** la estructura general se mantiene.
+
+**Respecto a relational attunement:** la estructura general se mantiene.
+
+**Respecto a relational discomfort:** la estructura se mantiene de forma parcial, el ítem 15 no se asocia al factor.
+
+**Respecto a distrust:** la estructura se mantiene de forma parcial, el ítem 19 no se asocia al mismo factor, y el ítem 15 (relational discomfort) sí se asocia.
+
+**Respecto a emotional discontrol:** la estructura se mantiene en su totalidad.
+
+
+**Notas generales:** 
+El ítem 6 (Para entender las acciones de los demás, es fundamental comprender lo que sienten) tiene baja carga con todos los factores, y su asociación más alta es con el factor "relational attunement", no con reflexión. Esto, en base a su contenido, tiene sentido.
+
+El ítem 19 (Para mí las cosas son blancas o son negras) se asocia a emotional discontrol (aunque poco) y un poco a relational discomfort y no a distrust.
+
+El ítem 15 (Me asusta abrirme con los demás) se asocia a distrust y no a relational discomfort.
+
+
+
+
+
+
+
+
+
+
