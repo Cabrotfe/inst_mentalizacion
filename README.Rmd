@@ -130,6 +130,7 @@ El MMQ cuenta con 6 factores, 3 de los cuales dan cuenta de aspectos positivos y
 nombres_MMQ = labelled::var_label(datos_un[,17:49])
 nombres_MMQ = unlist(nombres_MMQ)
 items_mmq = datos_un %>% select(17:49)
+items_mmq = na.omit(items_mmq)
 ```
 
 ```{r}
@@ -216,11 +217,278 @@ El ítem 19 (Para mí las cosas son blancas o son negras) se asocia a emotional 
 El ítem 15 (Me asusta abrirme con los demás) se asocia a distrust y no a relational discomfort.
 
 
+### Descripción y depuración del MentS:
+
+El instrumento cuenta con 3 factores (motivation, self y others), y algunos ítems están reversados.
+
+
+
+```{r}
+nombres_MentS = labelled::var_label(datos_un[,50:77])
+nombres_MentS = unlist(nombres_MentS)
+items_ments = datos_un %>% select(50:77)
+items_ments = na.omit(items_ments)
+```
+
+
+Descriptivos:
+
+```{r fig.height=8,fig.width=9}
+nombres_MentS = str_sub(nombres_MentS, start = 1, end = 100)
+colnames(items_ments) = nombres_MentS
+items_ments %>% gather(key=item, value = respuesta) %>% mutate(respuesta = factor(respuesta, levels = c("Totalmente en desacuerdo",
+                            "En desacuerdo",
+                            "Ni de acuerdo ni en desacuerdo",
+                            "De acuerdo",
+                            "Muy de acuerdo"))) %>%
+  count(item,respuesta) %>% group_by(item) %>% 
+  mutate(porc = round(n/sum(n),3)*100) %>% 
+  ggplot(aes(x=item, y=porc, fill=respuesta)) +
+  geom_col() +
+  coord_flip() +
+  theme_bw() +
+  theme(legend.position = "bottom", axis.text.y = element_text(size = 6.5, color = "black")) +
+  guides(fill=guide_legend(nrow=3,byrow=TRUE)) +
+  geom_text(aes(label=str_c(porc,"%")), position = "stack", size=2)
+```
+
+
+Ahora hay que reversal los ítems en negativo:
+
+8, 9, 11, 14, 18, 19, 21, 22, 26, 27
+
+```{r}
+ments = datos[,50:77]
+ments = na.omit(ments)
+ments = ments %>% mutate(across(.cols = c(8,9,11,14,18,19,21,22,26,27), .fns = function(x){
+  x = 6-x
+}))
+```
+
+
+```{r}
+library(corrplot)
+corrplot(cor(ments),order="hclust",addrect =3)
+```
+
+
+```{r}
+fa.parallel(ments)
+```
+
+
+```{r}
+fa_ments = fa(ments, nfactors = 3, rotate = "oblimin", cor = "poly")
+print(fa_ments, cut = 0.3)
+```
+
+**Respecto al factor de Motivation:**
+
+Los ítems que cargan al mismo factor teórico son: 1,4,7,9,13,15,17,24,27
+
+
+1.- Encuentro importante entender las razones de mis acciones.
+
+4.- Suelo pensar en otras personas y su comportamiento
+
+7.- Cuando alguien me cae mal, trato de entender por qué siento eso
+
+9.- No me gusta perder el tiempo tratando de entender el comportamiento de los demás.
+
+13.- Encuentro importante entender lo que pasa en mis relaciones con personas cercanas
+
+15.- Para entender por qué alguien hace algo, necesitamos saber lo que piensa, quiere y siente
+
+17.- Me gusta leer sobre temas relacionados con psicología.
+
+24.- Siempre me ha interesado saber por qué las personas se comportan de la manera en que lo hacen
+
+27.- No tiene sentido pensar en las intenciones y deseos de los demás porque todos dependemos de las circunstancias de la vida
+
+
+A eso habría que sumarle el ítem 2,14 y 28, aunque con cargas más bajas:
+
+
+2.- Para sacar conclusiones sobre la personalidad de los demás, me fijo en lo que dicen y hacen
+
+
+14.- Prefiero no saber algo de mí si no me va a gustar
+
+
+28.- Una de las cosas más importantes que deben aprender los/as niños/as es a expresar sus sentimientos y deseos
+
+
+El ítem 16, por su parte, no se asocia al factor de motivación, ni tampoco a ningún otro claramente.
+
+
+16.- Suelo hablar de emociones con mis cercanos
+
+
+***Resumen del factor Motivation:***
+
+El factor está centrado en buscar entender la conducta y emociones propias y de los demás, es decir, de mentalizar a las personas y a sí mismo. Esto también vinculado con actitudes en entender el mundo psíquico. El ítem 16, no necesariamente tiene que ver con interés en buscar entender el mundo psíquico propio y de los demás, y apunta a la frecuencia de una conducta, la cual puede ocurrir o no ocurrir por variadas circunstancias. 
+
+
+
+**Respecto al factor de Others:**
+
+Los ítems que cargan al mismo factor teórico son: 3, 5, 6, 12, 20, 23.
+
+
+
+3.- Puedo reconocer los sentimientos de los demás
+
+
+5.- Suelo darme cuenta de lo que hace sentir incómodas a las personas
+
+
+6.- Puedo empatizar con los sentimientos de los demás. (marginalmente)
+
+
+10.- Puedo predecir lo que van a hacer los demás si conozco sus creencias y sentimientos (marginalmente).
+
+
+12.- A veces, puedo comprender lo que el otro siente antes de que me lo diga
+
+
+20.- Puedo describir con precisión y detalle la personalidad de mis cercanos
+
+
+23.- Las personas me dicen que las entiendo y que les doy buenos consejos
+
+
+
+Los ítems que debieran cargar y no lo hacen son: 2, 25 y 28
+
+
+2.- Para sacar conclusiones sobre la personalidad de los demás, me fijo en lo que dicen y hacen.
+
+
+25.- Puedo describir fácilmente lo que siento
+
+
+28.- Una de las cosas más importantes que deben aprender los/as niños/as es a expresar sus sentimientos y deseos.
+
+
+***Descripción del factor otros:***
+
+Está vinculado a la percepción de la propia capacidad para comprender a los demás (sus sentimientos o lo que piensan) y empatizar con lo que sienten. El ítem 2, 25, 28 no están asociados al factor debido a que no aluden a la capacidad de comprender a otros. 
+
+
+
+**Respecto al factor Self:**
+
+Los ítems que cargan al factor tórico son los 8, 11, 14, 18, 19, 21, 22, 26:
+
+
+
+8.- Cuando estoy mal de ánimo, no estoy seguro/a si es tristeza, miedo o rabia
+
+
+11.- Con frecuencia, ni a mí me puedo explicar por qué hice algo
+
+
+14.- Prefiero no saber algo de mí si no me va a gustar (carga menos que para el factor motivation)
+
+
+18.- Me cuesta reconocer ante mí mismo que estoy triste, dolido o asustado
+
+
+19.- No me gusta pensar en mis problemas
+
+
+21.- Suelo confundirme acerca de cuáles son mis sentimientos
+
+
+22.- Me cuesta encontrar las palabras adecuadas para expresar mis sentimientos
+
+
+26.- Suelo distraerme cuando la gente me habla de sus sentimientos y necesidades (marginalmente)
+
+
+A estos ítems se le suma el ítem 25:
+
+
+25.- Puedo describir fácilmente lo que siento
+
+
+***Descripción del factor Self:***
+
+A nivel central, refiere a la percepción del grado de claridad/confusión que tiene una persona respecto a sus propios pensamientos, emociones y acciones.
 
 
 
 
 
+# Relación con otras variables:
+
+
+### EQ:
+
+El Empathy Quotient [EQ] fue adaptado a la población chilena y cuenta con evidencia de validez en esta población (revisar pepar).
+Este instrumento cuenta con 3 subdimensiones: empatía cognitiva, reactividad emocional y habilidades sociales.
+
+```{r}
+items_eq = datos %>% dplyr::select(starts_with("q0009"))
+```
+
+
+
+```{r}
+naniar::miss_var_summary(items_eq)
+vis_miss(items_eq)
+```
+
+
+```{r}
+items_eq$eq_ec = rowSums(items_eq[,c(1,19,25,26,36,41,43,44,52,54,55,58,60)])
+```
+
+
+```{r}
+items_eq$eq_hs = rowSums(items_eq[,c(4,8,12,14,21,35,57)])
+```
+
+
+```{r}
+items_eq$eq_re = rowSums(items_eq[,c(15,27,32,42,46,48,49,50,59)])
+```
+
+
+
+### IRI:
+
+El Interpersonal reactivity index (IRI) cuenta con 4 factores:
+
+Fantasy Scale (FS); Perspective taking (PT); Empathic Concern (EC) and Personal Distress (PD) scales
+
+
+```{r}
+items_iri = datos %>% select(starts_with("q0010"))
+```
+
+
+```{r}
+naniar::miss_var_summary(items_iri)
+vis_miss(items_iri)
+```
+
+
+```{r}
+items_iri$fs = NULL
+
+items_iri = items_iri %>% mutate(across(.cols = c(3,4,7,12,13,14,15,18,19), .fns = function(x){6-x}))
+
+corrplot(cor(items_iri,use="complete.obs"), order = "hclust", addrect = 4)
+
+items_iri$fs = rowSums(items_iri[,c(1,5,7,12,16,20,26)])
+
+items_iri$pd = rowSums(items_iri[,c(6,10,13,17,19,24,27)])
+
+items_iri$pt = rowSums(items_iri[,c(3,8,11,15,21,25,28)])
+
+items_iri$ec = rowSums(items_iri[,c(2,4,9,14,18,20,22)])
+```
 
 
 
