@@ -13,6 +13,25 @@ datos_un = unlabelled(datos)
 datos = datos %>% mutate(across(.cols = 1:16, .fns = function(x){unlabelled(x)}))
 ```
 
+
+
+# Método:
+
+Este estudio contó con 3 etapas: traducción y adaptación, entrevistas cognitivas y finalmente el análisis psicométricos.
+
+El proceso de traducción y adaptación de los ítems tuvo como enfoque reducir características irrelevantes del constructo a partir de una adpatación que diera cuenta de las características culturales de la población objetivo (APA, 2014). Por ello, los todos los ítems fueron fueron traducidos de dos formas: una forma literal, y una forma adaptada, buscando que esta última abordara los modos expresivos propios de la cultura Chilena. Ambas traducciones, junto con los ítems en inglés, fueron expuestos a un panel de 4 personas, compuesto por 2 psicolingüistas y 2 lingüistas, quienes analizaron y evaluaron las traducciones siguiendo un proceso adaptado de Solano et al.(2012), en el cual se analizan 10 dimensiones en que pueden haber errores de adaptación en el proceso de traducción: estilo, formato, convenciones, información, gramática, semántica, registro, cultura y origen (error en el ítem en su versión original). Los ítems en los que se detectó algún error fueron discutidos hasta que se llegó a un consenso. 
+
+En el caso del MMQ, se consensuaron 15 errores, de los cuales 11 fueron en el área de registro (La traducción no refleja las formas discursivas o expresivas locales (ej. la traducción suena poco natural en el uso del lenguaje), 5 fueron en el área semántica (la traducción altera el significado original), y 2 fueron en el área de información (la traducción altera la cantidad de información).
+
+En el caso del MentS se consensuaron 21 errores, de los cuales 19 fueron en el área del registro, 7 en el área semántica, 1 en el área de información. 
+
+
+
+
+
+
+
+
 # Descripción de los datos:
 
 ## Sociodemográficos
