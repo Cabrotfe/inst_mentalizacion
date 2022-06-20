@@ -19,12 +19,18 @@ datos = datos %>% mutate(across(.cols = 1:16, .fns = function(x){unlabelled(x)})
 
 Este estudio contó con 3 etapas: traducción y adaptación, entrevistas cognitivas y finalmente el análisis psicométricos.
 
+## Adaptación al español:
+
 El proceso de traducción y adaptación de los ítems tuvo como enfoque reducir características irrelevantes del constructo a partir de una adpatación que diera cuenta de las características culturales de la población objetivo (APA, 2014). Por ello, los todos los ítems fueron fueron traducidos de dos formas: una forma literal, y una forma adaptada, buscando que esta última abordara los modos expresivos propios de la cultura Chilena. Ambas traducciones, junto con los ítems en inglés, fueron expuestos a un panel de 4 personas, compuesto por 2 psicolingüistas y 2 lingüistas, quienes analizaron y evaluaron las traducciones siguiendo un proceso adaptado de Solano et al.(2012), en el cual se analizan 10 dimensiones en que pueden haber errores de adaptación en el proceso de traducción: estilo, formato, convenciones, información, gramática, semántica, registro, cultura y origen (error en el ítem en su versión original). Los ítems en los que se detectó algún error fueron discutidos hasta que se llegó a un consenso respecto a una versión final del ítem que no tuviera errores.
 
 En el caso del MMQ, se consensuaron 15 ítems con errores, de los cuales 11 fueron en el área de registro (La traducción no refleja las formas discursivas o expresivas locales (ej. la traducción suena poco natural en el uso del lenguaje), 5 fueron en el área semántica (la traducción altera el significado original), y 2 fueron en el área de información (la traducción altera la cantidad de información).
 
 En el caso del MentS se consensuaron 21 ítems con errores, de los cuales 19 fueron en el área del registro, 7 en el área semántica, 1 en el área de información. 
 
+
+## Entrevistas cognitivas:
+
+Se realizaron 5 entrevistas cognitivas (3 mujeres) a personas no relacinadas con la psicología. El procedimiento consistió en 2 etapas: en la primera etapa los participantes contestaron el instrumento MMQ y el MentS; en la segunda etapa frente a cada ítem se le hicieron 4 preguntas: 1) ¿qué te está pidiendo que contestes el ítem?, 2) ¿qué contestaste?, 3) ¿por qué elegiste esta categoría?, 4) ¿hay algo del ítem que te pareció poco claro o confuso?
 
 
 
@@ -201,6 +207,8 @@ F6 (emotional discontrol):2,3,7,23
 psych::fa.parallel((datos[,17:49]))
 ```
 
+
+
 Al parecer es una buena solución 6 factores
 
 
@@ -216,7 +224,9 @@ print(fa(datos[,17:49], nfactors = 6,rotate = "oblimin", cor = "poly"),cut = .2)
 
 6.- Para entender las acciones de los demás, es fundamental comprender lo que sienten
 
+
 31.- Soy una persona que piensa en los demás.
+
 
 Ambos ítems cargan al mismo factor, relational discomfort (ej. 27.- La gente me abandona)
 
@@ -541,19 +551,19 @@ vis_miss(items_eq)
 
 
 ```{r}
+
+items_eq=items_eq %>% mutate(across(.cols = everything(), .fns = function(x){
+  x=5-x
+}))
+
+```
+
+
+```{r}
 items_eq$eq_ec = rowSums(items_eq[,c(1,19,25,26,36,41,43,44,52,54,55,58,60)])
-```
-
-
-```{r}
 items_eq$eq_hs = rowSums(items_eq[,c(4,8,12,14,21,35,57)])
-```
-
-
-```{r}
 items_eq$eq_re = rowSums(items_eq[,c(15,27,32,42,46,48,49,50,59)])
 ```
-
 
 
 ### IRI:
@@ -619,13 +629,6 @@ vis_miss(items_aq)
 ```
 
 
-Agresión física: 1,5,9,17,21,27,29
-
-Agresión verbal: 2,6,14,18
-
-Anger: 3,7,11,22
-
-Hostilidad: 4,16,20,26,28
 
 ```{r}
 items_aq$af = rowSums(items_aq[,c(1,5,9,17,21,27,29)])
@@ -634,3 +637,379 @@ items_aq$ang = rowSums(items_aq[,c(3,7,11,22)])
 items_aq$host = rowSums(items_aq[,c(4,16,20,26,28)])
 ```
 
+
+
+
+
+# Asociación con otras variables:
+
+EQ: empatía cognitiva (EC), reactividad emocional (RE) y habilidades sociales (HS).
+
+
+IRI: Fantasy Scale (FS); Perspective taking (PT); Empathic Concern (EC) and Personal Distress (PD) scales
+
+
+BPAQ: agresión física (AF), agresión verbal (AV), rabia (R) y hostilidad (H).
+
+
+```{r}
+datos_fa = datos
+datos_fa$suma_eq_ec = items_eq$eq_ec
+datos_fa$suma_eq_hs = items_eq$eq_hs
+datos_fa$suma_eq_re = items_eq$eq_re 
+
+## iri: 
+
+datos_fa$suma_iri_fs = items_iri$fs
+datos_fa$suma_iri_pd = items_iri$pd
+datos_fa$suma_iri_pt = items_iri$pt 
+datos_fa$suma_iri_ec = items_iri$ec
+
+## BPAQ:
+
+
+datos_fa$suma_aq_af = items_aq$af
+datos_fa$suma_aq_av = items_aq$av
+datos_fa$suma_aq_r = items_aq$ang
+datos_fa$suma_aq_h = items_aq$host
+```
+
+
+
+
+## MMQ:
+
+El instrumento cuenta con 6 subescalas, compuestas de la siguiente manera:
+
+**Escalas positivas:**
+
+F1 (reflexión): 1,6,8,10,16,17,18,31,32
+
+F2 (ego-strength): 11,22,24,25,26,30
+
+F3 (relational attunement): 4,5,14,21,28
+
+**Escalas negativas:**
+
+F4 (relational discomfort): 9,12,15,27,33
+
+F5 (distrust): 13,19,20,29
+
+F6 (emotional discontrol):2,3,7,23
+
+
+
+### Escalas con complicaciones:
+
+Las variables más complicadas son:
+
+Relational Attunement: originalmente ítems 4,5,14,21,28; propuesta: 4,5,28. Ítem 14 y 21 asociados a relational discomfort. Hipótesis es predominancia de empatía cognitiva, y los ítems más afectivos podrían tener que ver con relaciones sociales concretas.
+
+
+Relational Discomfort: originalmente ítems 9,12,15,27,33; propuesta: 9,12,27,33 6,14,21,31. Hipótesis es predominancia de ítems sobre empatía emocional.
+
+
+### Relational Attunement:
+
+Model1 (original)
+
+```{r}
+library(lavaan)
+
+
+#f_ra1~~suma_aq_af
+#f_ra1~~suma_aq_av
+#f_ra1~~suma_aq_r
+#f_ra1~~suma_aq_h
+#f_ra1~~suma_eq_hs
+#f_ra1~~suma_eq_re
+#f_ra1~~suma_iri_fs
+#f_ra1~~suma_iri_pd
+#f_ra1~~suma_iri_pt
+
+
+cod_ra_cov1 = "f_ra1 =~ q0007_0004+q0007_0005+q0007_0028+q0007_0014+q0007_0021
+f_ra1~~suma_eq_ec
+f_ra1~~suma_iri_ec
+"
+
+# ordered = names(datos_fa[,17:77]) agregar en caso de:
+
+mod_ra_cov1 = sem(model=cod_ra_cov1, data = datos_fa, estimator = "MLR")
+
+summary(mod_ra_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+Model2:
+
+```{r}
+cod_ra_cov2 = "f_ra1 =~ q0007_0004+q0007_0005+q0007_0028
+f_ra1~~suma_eq_ec
+f_ra1~~suma_iri_ec"
+
+# ordered = names(datos_fa[,17:77]) agregar en caso de:
+
+mod_ra_cov2 = sem(model=cod_ra_cov2, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_ra_cov2, fit.measures = T, standardized = TRUE)
+```
+
+
+Conclusión: los ítems 14 y 21 tienen un efecto en el factor que lo hace tener más que ver con la vinculación emocional (relación con EC), y disminuye levemente su asociación con la empatía cognitiva. El ajuste general del modelo disminuye. Se propone que estos ítems podrían no pertenecer al mismo constructo.
+
+
+
+### Relational discomfort:
+
+
+Model1: (original)
+
+```{r}
+cod_rd_cov1 = "f_rd1 =~ q0007_0009+q0007_0012+q0007_0015+q0007_0027+q0007_0033
+f_rd1~~suma_eq_ec
+f_rd1~~suma_iri_ec
+f_rd1~~suma_aq_h"
+
+# ordered = names(datos_fa[,17:77]) agregar en caso de:
+
+mod_rd_cov1 = sem(model=cod_rd_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_rd_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+Model2: (propuesta)
+
+```{r}
+datos_fa$q0007_0006r = 6 - datos_fa$q0007_0006
+datos_fa$q0007_0014r = 6 - datos_fa$q0007_0014
+datos_fa$q0007_0021r = 6 - datos_fa$q0007_0021
+datos_fa$q0007_0031r = 6 - datos_fa$q0007_0031
+
+
+cod_rd_cov2 = "f_rd1 =~ q0007_0009+q0007_0012+q0007_0027+q0007_0033+q0007_0006r+q0007_0014r+q0007_0021r+q0007_0031r
+f_rd1~~suma_eq_ec
+f_rd1~~suma_iri_ec
+f_rd1~~suma_aq_h"
+
+# ordered = names(datos_fa[,17:77]) agregar en caso de:
+
+mod_rd_cov2 = sem(model=cod_rd_cov2, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_rd_cov2, fit.measures = T, standardized = TRUE)
+```
+
+
+Conclusión: los ítems que se agregan no contribuyen a definir el factor. La propuesta es dejar la hostilidad como criterio y mantener la escala original.
+
+
+### Reflexibility:
+
+Modelo 1: escala original: 1,6,8,10,16,17,18,31,32
+
+```{r}
+cod_rf_cov1 = "f_rf1 =~ q0007_0001+q0007_0006+q0007_0008+q0007_0010+q0007_0016+q0007_0017+q0007_0018+q0007_0031+
+q0007_0032
+f_rf1~~suma_eq_ec
+f_rf1~~suma_iri_ec
+f_rf1~~suma_iri_pt"
+
+# ordered = names(datos_fa[,17:77]) agregar en caso de:
+
+mod_rf_cov1 = sem(model=cod_rf_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_rf_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+Modelo 2: escala propuesta
+
+```{r}
+cod_rf_cov2 = "f_rf1 =~ q0007_0001+q0007_0008+q0007_0010+q0007_0016+q0007_0017+q0007_0018+
+q0007_0032
+f_rf1~~suma_eq_ec
+f_rf1~~suma_iri_ec
+f_rf1~~suma_iri_pt"
+
+# ordered = names(datos_fa[,17:77]) agregar en caso de:
+
+mod_rf_cov2 = sem(model=cod_rf_cov2, data = datos_fa, estimator = "MLR")
+
+summary(mod_rf_cov2, fit.measures = T, standardized = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+### Propuesta del nuevo factor (Empatic concern):
+
+Se propone un factor de empatic concern in close relationships con los siguientes ítems. 
+
+
+6.- Para entender las acciones de los demás, es fundamental comprender lo que sienten.
+
+
+14.- Soy capaz de empatizar con otros cuando me cuentan algo.
+
+
+21.- Soy sensible a lo que le pasa a los demás.
+
+
+31.- Soy una persona que piensa en los demás.
+
+
+```{r}
+cod_ec_cov1 = "f_ec1 =~ q0007_0006+q0007_0014+q0007_0021+q0007_0031
+f_ec1~~suma_eq_ec
+f_ec1~~suma_iri_ec"
+
+mod_ec_cov1 = sem(model=cod_ec_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_ec_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+
+```{r}
+cod_ec_cov2 = "f_ec1 =~ q0007_0014+q0007_0021+q0007_0031
+f_ec1~~suma_eq_ec
+f_ec1~~suma_iri_ec"
+
+mod_ec_cov2 = sem(model=cod_ec_cov2, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_ec_cov2, fit.measures = T, standardized = TRUE)
+```
+
+
+
+## Reflexibility:
+
+
+```{r}
+cod_ec_cov1 = "f_ec1 =~ q0007_0006+q0007_0014+q0007_0021+q0007_0031
+f_ec1~~suma_eq_ec
+f_ec1~~suma_iri_ec"
+
+mod_ec_cov1 = sem(model=cod_ec_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_ec_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+
+
+```{r}
+cod_ec_cov1 = "f_ec1 =~ q0007_0006+q0007_0014+q0007_0021+q0007_0031
+f_ec1~~suma_eq_ec
+f_ec1~~suma_iri_ec"
+
+mod_ec_cov1 = sem(model=cod_ec_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_ec_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+
+### F2 (ego-strength)
+
+Escala original: 11,22,24,25,26,30
+
+```{r}
+cod_es_cov1 = "f_es1 =~ q0007_0011+q0007_0022+q0007_0024+q0007_0025+q0007_0026+q0007_0030
+f_es1~~suma_eq_ec
+f_es1~~suma_iri_ec
+f_es1~~suma_iri_pd"
+
+mod_es_cov1 = sem(model=cod_es_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_es_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+### F5 (distrust)
+
+Escala original: 13,19,20,29
+
+
+
+```{r}
+cod_dt_cov1 = "f_dt1 =~ q0007_0013+q0007_0019+q0007_0020+q0007_0029
+f_dt1~~suma_iri_ec
+f_dt1~~suma_aq_h"
+
+# f_dt1~~suma_eq_ec
+
+mod_dt_cov1 = sem(model=cod_dt_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_dt_cov1, fit.measures = T, standardized = TRUE)
+```
+
+
+Escala propuesta: 13,15,20,29
+
+
+```{r}
+cod_dt_cov2 = "f_dt1 =~ q0007_0013+q0007_0015+q0007_0020+q0007_0029
+f_dt1~~suma_iri_ec
+f_dt1~~suma_aq_h"
+
+mod_dt_cov2 = sem(model=cod_dt_cov2, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_dt_cov2, fit.measures = T, standardized = TRUE)
+```
+
+Conclusión: nos quedamos con el modelo alternativo.
+
+
+### Emotional discontrol
+
+Escala original: 2,3,7,23
+
+```{r}
+cod_ed_cov1 = "f_ed1 =~ q0007_0002+q0007_0003+q0007_0007+q0007_0023
+f_ed1~~suma_aq_r
+f_ed1~~suma_iri_pd
+"
+
+# f_ed1~~suma_iri_pd; f_ed1~~suma_aq_h
+
+mod_ed_COV1 = sem(model=cod_ed_cov1, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_ed_COV1, fit.measures = T, standardized = TRUE)
+```
+
+Escala propuesta: 2,3,7,19,23
+
+```{r}
+cod_ed_cov2 = "f_ed1 =~ q0007_0002+q0007_0003+q0007_0007+q0007_0023+q0007_0019
+f_ed1~~suma_aq_r
+f_ed1~~suma_iri_pd
+"
+
+mod_ed_COV2 = sem(model=cod_ed_cov2, data = datos_fa,
+                  estimator = "MLR")
+
+summary(mod_ed_COV2, fit.measures = T, standardized = TRUE)
+```
+
+Conclusión: nos quedamos con el modelo original
