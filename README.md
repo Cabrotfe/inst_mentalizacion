@@ -1,6 +1,39 @@
 Análisis instrumentos
 ================
 
+# Método:
+
+Este estudio contó con 3 etapas: traducción y adaptación, entrevistas
+cognitivas y finalmente el análisis psicométricos.
+
+El proceso de traducción y adaptación de los ítems tuvo como enfoque
+reducir características irrelevantes del constructo a partir de una
+adpatación que diera cuenta de las características culturales de la
+población objetivo (APA, 2014). Por ello, los todos los ítems fueron
+fueron traducidos de dos formas: una forma literal, y una forma
+adaptada, buscando que esta última abordara los modos expresivos propios
+de la cultura Chilena. Ambas traducciones, junto con los ítems en
+inglés, fueron expuestos a un panel de 4 personas, compuesto por 2
+psicolingüistas y 2 lingüistas, quienes analizaron y evaluaron las
+traducciones siguiendo un proceso adaptado de Solano et al.(2012), en el
+cual se analizan 10 dimensiones en que pueden haber errores de
+adaptación en el proceso de traducción: estilo, formato, convenciones,
+información, gramática, semántica, registro, cultura y origen (error en
+el ítem en su versión original). Los ítems en los que se detectó algún
+error fueron discutidos hasta que se llegó a un consenso respecto a una
+versión final del ítem que no tuviera errores.
+
+En el caso del MMQ, se consensuaron 15 ítems con errores, de los cuales
+11 fueron en el área de registro (La traducción no refleja las formas
+discursivas o expresivas locales (ej. la traducción suena poco natural
+en el uso del lenguaje), 5 fueron en el área semántica (la traducción
+altera el significado original), y 2 fueron en el área de información
+(la traducción altera la cantidad de información).
+
+En el caso del MentS se consensuaron 21 ítems con errores, de los cuales
+19 fueron en el área del registro, 7 en el área semántica, 1 en el área
+de información.
+
 # Descripción de los datos:
 
 ## Sociodemográficos
@@ -23,10 +56,10 @@ naniar::miss_var_summary(datos[,11:16])
     ## # A tibble: 6 x 3
     ##   variable       n_miss pct_miss
     ##   <chr>           <int>    <dbl>
-    ## 1 estudio_actual     88    28.7 
-    ## 2 genero             10     3.26
-    ## 3 educacion          10     3.26
-    ## 4 estudias           10     3.26
+    ## 1 estudio_actual    141    33.4 
+    ## 2 genero             14     3.32
+    ## 3 educacion          14     3.32
+    ## 4 estudias           14     3.32
     ## 5 acuerdo             0     0   
     ## 6 edad                0     0
 
@@ -68,34 +101,34 @@ datos$edad = as.numeric(as.character(datos$edad))
 summary(tableby(~edad+genero+educacion+estudias+estudio_actual, data = datos))
 ```
 
-|                                                               | Overall (N=307) |
+|                                                               | Overall (N=422) |
 |:--------------------------------------------------------------|:---------------:|
 | **edad**                                                      |                 |
-|    N-Miss                                                     |       10        |
-|    Mean (SD)                                                  | 28.253 (12.714) |
-|    Range                                                      | 17.000 - 85.000 |
+|    N-Miss                                                     |       14        |
+|    Mean (SD)                                                  | 29.113 (11.764) |
+|    Range                                                      | 0.000 - 85.000  |
 | **¿Con qué género te identificas?**                           |                 |
-|    N-Miss                                                     |       10        |
-|    Masculino                                                  |   90 (30.3%)    |
-|    Femenino                                                   |   198 (66.7%)   |
-|    Otro                                                       |    6 (2.0%)     |
-|    Prefiero no decirlo                                        |    3 (1.0%)     |
+|    N-Miss                                                     |       14        |
+|    Masculino                                                  |   126 (30.9%)   |
+|    Femenino                                                   |   270 (66.2%)   |
+|    Otro                                                       |    7 (1.7%)     |
+|    Prefiero no decirlo                                        |    5 (1.2%)     |
 | **¿Cuál es el nivel educacional más alto que has alcanzado?** |                 |
-|    N-Miss                                                     |       10        |
+|    N-Miss                                                     |       14        |
 |    Educación básica completa                                  |    0 (0.0%)     |
-|    Educación media completa                                   |   184 (62.0%)   |
-|    Educación técnico profesional completa                     |    14 (4.7%)    |
-|    Educación universitaria completa                           |   45 (15.2%)    |
-|    Educación de postgrado completa                            |   54 (18.2%)    |
+|    Educación media completa                                   |   208 (51.0%)   |
+|    Educación técnico profesional completa                     |    25 (6.1%)    |
+|    Educación universitaria completa                           |   100 (24.5%)   |
+|    Educación de postgrado completa                            |   75 (18.4%)    |
 | **¿Actualmente te encuentras estudiando?**                    |                 |
-|    N-Miss                                                     |       10        |
-|    Sí                                                         |   217 (73.1%)   |
-|    No                                                         |   80 (26.9%)    |
+|    N-Miss                                                     |       14        |
+|    Sí                                                         |   277 (67.9%)   |
+|    No                                                         |   131 (32.1%)   |
 | **estudio_actual**                                            |                 |
-|    N-Miss                                                     |       10        |
-|    No                                                         |   80 (26.9%)    |
-|    Universitaria                                              |   195 (65.7%)   |
-|    Postgrado                                                  |    22 (7.4%)    |
+|    N-Miss                                                     |       18        |
+|    No                                                         |   131 (32.4%)   |
+|    Universitaria                                              |   225 (55.7%)   |
+|    Postgrado                                                  |   48 (11.9%)    |
 
 Diferencias entre personas según están estudiando actualmente:
 
@@ -103,25 +136,25 @@ Diferencias entre personas según están estudiando actualmente:
 summary(tableby(estudio_actual~edad+genero+educacion+estudias, data = datos))
 ```
 
-|                                                               |    No (N=80)    | Universitaria (N=195) | Postgrado (N=22) |  Total (N=297)  |  p value |
+|                                                               |   No (N=131)    | Universitaria (N=225) | Postgrado (N=48) |  Total (N=404)  |  p value |
 |:--------------------------------------------------------------|:---------------:|:---------------------:|:----------------:|:---------------:|---------:|
 | **edad**                                                      |                 |                       |                  |                 | \< 0.001 |
-|    Mean (SD)                                                  | 43.013 (13.547) |    21.451 (3.840)     | 34.864 (12.112)  | 28.253 (12.714) |          |
-|    Range                                                      | 23.000 - 85.000 |    17.000 - 49.000    | 23.000 - 70.000  | 17.000 - 85.000 |          |
-| **¿Con qué género te identificas?**                           |                 |                       |                  |                 |    0.001 |
-|    Masculino                                                  |   31 (38.8%)    |      45 (23.1%)       |    14 (63.6%)    |   90 (30.3%)    |          |
-|    Femenino                                                   |   49 (61.2%)    |      141 (72.3%)      |    8 (36.4%)     |   198 (66.7%)   |          |
-|    Otro                                                       |    0 (0.0%)     |       6 (3.1%)        |     0 (0.0%)     |    6 (2.0%)     |          |
-|    Prefiero no decirlo                                        |    0 (0.0%)     |       3 (1.5%)        |     0 (0.0%)     |    3 (1.0%)     |          |
+|    Mean (SD)                                                  | 39.420 (12.565) |    21.840 (4.266)     |  34.250 (8.494)  | 29.015 (11.690) |          |
+|    Range                                                      | 0.000 - 85.000  |    17.000 - 49.000    | 23.000 - 70.000  | 0.000 - 85.000  |          |
+| **¿Con qué género te identificas?**                           |                 |                       |                  |                 |    0.017 |
+|    Masculino                                                  |   47 (35.9%)    |      56 (24.9%)       |    22 (45.8%)    |   125 (30.9%)   |          |
+|    Femenino                                                   |   83 (63.4%)    |      159 (70.7%)      |    25 (52.1%)    |   267 (66.1%)   |          |
+|    Otro                                                       |    0 (0.0%)     |       7 (3.1%)        |     0 (0.0%)     |    7 (1.7%)     |          |
+|    Prefiero no decirlo                                        |    1 (0.8%)     |       3 (1.3%)        |     1 (2.1%)     |    5 (1.2%)     |          |
 | **¿Cuál es el nivel educacional más alto que has alcanzado?** |                 |                       |                  |                 |          |
 |    Educación básica completa                                  |    0 (0.0%)     |       0 (0.0%)        |     0 (0.0%)     |    0 (0.0%)     |          |
-|    Educación media completa                                   |    1 (1.2%)     |      182 (93.3%)      |     1 (4.5%)     |   184 (62.0%)   |          |
-|    Educación técnico profesional completa                     |    8 (10.0%)    |       5 (2.6%)        |     1 (4.5%)     |    14 (4.7%)    |          |
-|    Educación universitaria completa                           |   26 (32.5%)    |       7 (3.6%)        |    12 (54.5%)    |   45 (15.2%)    |          |
-|    Educación de postgrado completa                            |   45 (56.2%)    |       1 (0.5%)        |    8 (36.4%)     |   54 (18.2%)    |          |
+|    Educación media completa                                   |    2 (1.5%)     |      205 (91.1%)      |     1 (2.1%)     |   208 (51.5%)   |          |
+|    Educación técnico profesional completa                     |   15 (11.5%)    |       8 (3.6%)        |     1 (2.1%)     |    24 (5.9%)    |          |
+|    Educación universitaria completa                           |   55 (42.0%)    |       11 (4.9%)       |    32 (66.7%)    |   98 (24.3%)    |          |
+|    Educación de postgrado completa                            |   59 (45.0%)    |       1 (0.4%)        |    14 (29.2%)    |   74 (18.3%)    |          |
 | **¿Actualmente te encuentras estudiando?**                    |                 |                       |                  |                 | \< 0.001 |
-|    Sí                                                         |    0 (0.0%)     |     195 (100.0%)      |   22 (100.0%)    |   217 (73.1%)   |          |
-|    No                                                         |   80 (100.0%)   |       0 (0.0%)        |     0 (0.0%)     |   80 (26.9%)    |          |
+|    Sí                                                         |    0 (0.0%)     |     225 (100.0%)      |   48 (100.0%)    |   273 (67.6%)   |          |
+|    No                                                         |  131 (100.0%)   |       0 (0.0%)        |     0 (0.0%)     |   131 (32.4%)   |          |
 
 # Instrumentos de mentalización:
 
@@ -136,16 +169,16 @@ naniar::miss_var_summary(datos[,17:49])
     ## # A tibble: 33 x 3
     ##    variable   n_miss pct_miss
     ##    <chr>       <int>    <dbl>
-    ##  1 q0007_0001     39     12.7
-    ##  2 q0007_0002     39     12.7
-    ##  3 q0007_0003     39     12.7
-    ##  4 q0007_0004     39     12.7
-    ##  5 q0007_0005     39     12.7
-    ##  6 q0007_0006     39     12.7
-    ##  7 q0007_0007     39     12.7
-    ##  8 q0007_0008     39     12.7
-    ##  9 q0007_0009     39     12.7
-    ## 10 q0007_0010     39     12.7
+    ##  1 q0007_0001     55     13.0
+    ##  2 q0007_0002     55     13.0
+    ##  3 q0007_0003     55     13.0
+    ##  4 q0007_0004     55     13.0
+    ##  5 q0007_0005     55     13.0
+    ##  6 q0007_0006     55     13.0
+    ##  7 q0007_0007     55     13.0
+    ##  8 q0007_0008     55     13.0
+    ##  9 q0007_0009     55     13.0
+    ## 10 q0007_0010     55     13.0
     ## # ... with 23 more rows
 
 ``` r
@@ -165,16 +198,16 @@ naniar::miss_var_summary(datos[,50:77])
     ## # A tibble: 28 x 3
     ##    variable   n_miss pct_miss
     ##    <chr>       <int>    <dbl>
-    ##  1 q0008_0001     50     16.3
-    ##  2 q0008_0002     50     16.3
-    ##  3 q0008_0003     50     16.3
-    ##  4 q0008_0004     50     16.3
-    ##  5 q0008_0005     50     16.3
-    ##  6 q0008_0006     50     16.3
-    ##  7 q0008_0007     50     16.3
-    ##  8 q0008_0008     50     16.3
-    ##  9 q0008_0009     50     16.3
-    ## 10 q0008_0010     50     16.3
+    ##  1 q0008_0001     74     17.5
+    ##  2 q0008_0002     74     17.5
+    ##  3 q0008_0003     74     17.5
+    ##  4 q0008_0004     74     17.5
+    ##  5 q0008_0005     74     17.5
+    ##  6 q0008_0006     74     17.5
+    ##  7 q0008_0007     74     17.5
+    ##  8 q0008_0008     74     17.5
+    ##  9 q0008_0009     74     17.5
+    ## 10 q0008_0010     74     17.5
     ## # ... with 18 more rows
 
 ``` r
@@ -205,34 +238,34 @@ datos = datos %>% mutate(omision_mentalizacion = ifelse(
 summary(tableby(omision_mentalizacion~edad+genero+educacion+estudias+estudio_actual, data = datos))
 ```
 
-|                                                               |   no (N=257)    |    sí (N=50)    |  Total (N=307)  | p value |
+|                                                               |   no (N=348)    |    sí (N=74)    |  Total (N=422)  | p value |
 |:--------------------------------------------------------------|:---------------:|:---------------:|:---------------:|--------:|
-| **edad**                                                      |                 |                 |                 |   0.669 |
-|    N-Miss                                                     |        0        |       10        |       10        |         |
-|    Mean (SD)                                                  | 28.377 (12.867) | 27.450 (11.810) | 28.253 (12.714) |         |
-|    Range                                                      | 17.000 - 85.000 | 18.000 - 67.000 | 17.000 - 85.000 |         |
-| **¿Con qué género te identificas?**                           |                 |                 |                 |   0.655 |
-|    N-Miss                                                     |        0        |       10        |       10        |         |
-|    Masculino                                                  |   75 (29.2%)    |   15 (37.5%)    |   90 (30.3%)    |         |
-|    Femenino                                                   |   174 (67.7%)   |   24 (60.0%)    |   198 (66.7%)   |         |
-|    Otro                                                       |    5 (1.9%)     |    1 (2.5%)     |    6 (2.0%)     |         |
-|    Prefiero no decirlo                                        |    3 (1.2%)     |    0 (0.0%)     |    3 (1.0%)     |         |
+| **edad**                                                      |                 |                 |                 |   0.724 |
+|    N-Miss                                                     |        0        |       14        |       14        |         |
+|    Mean (SD)                                                  | 29.198 (11.870) | 28.617 (11.210) | 29.113 (11.764) |         |
+|    Range                                                      | 0.000 - 85.000  | 18.000 - 67.000 | 0.000 - 85.000  |         |
+| **¿Con qué género te identificas?**                           |                 |                 |                 |   0.469 |
+|    N-Miss                                                     |        0        |       14        |       14        |         |
+|    Masculino                                                  |   103 (29.6%)   |   23 (38.3%)    |   126 (30.9%)   |         |
+|    Femenino                                                   |   234 (67.2%)   |   36 (60.0%)    |   270 (66.2%)   |         |
+|    Otro                                                       |    6 (1.7%)     |    1 (1.7%)     |    7 (1.7%)     |         |
+|    Prefiero no decirlo                                        |    5 (1.4%)     |    0 (0.0%)     |    5 (1.2%)     |         |
 | **¿Cuál es el nivel educacional más alto que has alcanzado?** |                 |                 |                 |         |
-|    N-Miss                                                     |        0        |       10        |       10        |         |
+|    N-Miss                                                     |        0        |       14        |       14        |         |
 |    Educación básica completa                                  |    0 (0.0%)     |    0 (0.0%)     |    0 (0.0%)     |         |
-|    Educación media completa                                   |   159 (61.9%)   |   25 (62.5%)    |   184 (62.0%)   |         |
-|    Educación técnico profesional completa                     |    9 (3.5%)     |    5 (12.5%)    |    14 (4.7%)    |         |
-|    Educación universitaria completa                           |   38 (14.8%)    |    7 (17.5%)    |   45 (15.2%)    |         |
-|    Educación de postgrado completa                            |   51 (19.8%)    |    3 (7.5%)     |   54 (18.2%)    |         |
-| **¿Actualmente te encuentras estudiando?**                    |                 |                 |                 |   0.497 |
-|    N-Miss                                                     |        0        |       10        |       10        |         |
-|    Sí                                                         |   186 (72.4%)   |   31 (77.5%)    |   217 (73.1%)   |         |
-|    No                                                         |   71 (27.6%)    |    9 (22.5%)    |   80 (26.9%)    |         |
-| **estudio_actual**                                            |                 |                 |                 |   0.677 |
-|    N-Miss                                                     |        0        |       10        |       10        |         |
-|    No                                                         |   71 (27.6%)    |    9 (22.5%)    |   80 (26.9%)    |         |
-|    Universitaria                                              |   168 (65.4%)   |   27 (67.5%)    |   195 (65.7%)   |         |
-|    Postgrado                                                  |    18 (7.0%)    |    4 (10.0%)    |    22 (7.4%)    |         |
+|    Educación media completa                                   |   176 (50.6%)   |   32 (53.3%)    |   208 (51.0%)   |         |
+|    Educación técnico profesional completa                     |    18 (5.2%)    |    7 (11.7%)    |    25 (6.1%)    |         |
+|    Educación universitaria completa                           |   83 (23.9%)    |   17 (28.3%)    |   100 (24.5%)   |         |
+|    Educación de postgrado completa                            |   71 (20.4%)    |    4 (6.7%)     |   75 (18.4%)    |         |
+| **¿Actualmente te encuentras estudiando?**                    |                 |                 |                 |   0.937 |
+|    N-Miss                                                     |        0        |       14        |       14        |         |
+|    Sí                                                         |   236 (67.8%)   |   41 (68.3%)    |   277 (67.9%)   |         |
+|    No                                                         |   112 (32.2%)   |   19 (31.7%)    |   131 (32.1%)   |         |
+| **estudio_actual**                                            |                 |                 |                 |   0.700 |
+|    N-Miss                                                     |        2        |       16        |       18        |         |
+|    No                                                         |   112 (32.4%)   |   19 (32.8%)    |   131 (32.4%)   |         |
+|    Universitaria                                              |   191 (55.2%)   |   34 (58.6%)    |   225 (55.7%)   |         |
+|    Postgrado                                                  |   43 (12.4%)    |    5 (8.6%)     |   48 (11.9%)    |         |
 
 Hasta el momento los grupos son similares.
 
@@ -314,118 +347,201 @@ psych::fa.parallel((datos[,17:49]))
 Al parecer es una buena solución 6 factores
 
 ``` r
-print(fa(datos[,17:49], nfactors = 6,rotate = "oblimin"),cut = .2)
+print(fa(datos[,17:49], nfactors = 6,rotate = "oblimin", cor = "poly"),cut = .2)
 ```
 
     ## Loading required namespace: GPArotation
 
     ## Factor Analysis using method =  minres
-    ## Call: fa(r = datos[, 17:49], nfactors = 6, rotate = "oblimin")
+    ## Call: fa(r = datos[, 17:49], nfactors = 6, rotate = "oblimin", cor = "poly")
     ## Standardized loadings (pattern matrix) based upon correlation matrix
-    ##              MR1   MR6   MR4   MR2   MR3   MR5   h2   u2 com
-    ## q0007_0001              0.24       -0.20       0.12 0.88 2.9
-    ## q0007_0002        0.58                         0.30 0.70 1.2
-    ## q0007_0003        0.73                         0.63 0.37 1.1
-    ## q0007_0004                    0.71             0.52 0.48 1.1
-    ## q0007_0005                    0.73             0.51 0.49 1.0
-    ## q0007_0006                    0.23       -0.39 0.26 0.74 2.7
-    ## q0007_0007        0.72                         0.66 0.34 1.1
-    ## q0007_0008  0.24        0.46 -0.21             0.31 0.69 2.3
-    ## q0007_0009 -0.29                          0.37 0.31 0.69 2.3
-    ## q0007_0010              0.60                   0.42 0.58 1.2
-    ## q0007_0011  0.45 -0.25                         0.45 0.55 1.8
-    ## q0007_0012 -0.22                          0.48 0.47 0.53 1.9
-    ## q0007_0013                          0.76       0.59 0.41 1.0
-    ## q0007_0014        0.20        0.30       -0.35 0.35 0.65 3.0
-    ## q0007_0015                          0.32       0.24 0.76 2.1
-    ## q0007_0016              0.75                   0.58 0.42 1.1
-    ## q0007_0017              0.56                   0.39 0.61 1.2
-    ## q0007_0018              0.57                   0.36 0.64 1.4
-    ## q0007_0019        0.38                         0.21 0.79 2.1
-    ## q0007_0020                          0.57       0.46 0.54 1.3
-    ## q0007_0021                    0.26       -0.35 0.33 0.67 3.7
-    ## q0007_0022  0.53                               0.35 0.65 1.2
-    ## q0007_0023        0.48                         0.33 0.67 1.5
-    ## q0007_0024  0.77                               0.68 0.32 1.1
-    ## q0007_0025  0.75                               0.69 0.31 1.1
-    ## q0007_0026  0.50 -0.32                         0.50 0.50 1.8
-    ## q0007_0027                                0.53 0.52 0.48 1.7
-    ## q0007_0028                    0.62             0.47 0.53 1.3
-    ## q0007_0029                          0.77       0.56 0.44 1.1
-    ## q0007_0030  0.80                               0.63 0.37 1.1
-    ## q0007_0031                    0.25       -0.33 0.29 0.71 2.8
-    ## q0007_0032              0.33  0.23             0.23 0.77 2.5
-    ## q0007_0033        0.28                    0.35 0.37 0.63 2.9
+    ##              MR1   MR2   MR5   MR3   MR4   MR6   h2   u2 com
+    ## q0007_0001        0.28       -0.23             0.16 0.84 2.9
+    ## q0007_0002              0.68                   0.40 0.60 1.1
+    ## q0007_0003              0.64                   0.60 0.40 1.3
+    ## q0007_0004                          0.75       0.63 0.37 1.1
+    ## q0007_0005                          0.80       0.63 0.37 1.1
+    ## q0007_0006 -0.25                    0.20  0.45 0.36 0.64 3.2
+    ## q0007_0007              0.68                   0.66 0.34 1.2
+    ## q0007_0008  0.24  0.56                         0.40 0.60 1.5
+    ## q0007_0009 -0.29              0.22       -0.36 0.36 0.64 2.8
+    ## q0007_0010        0.69                         0.55 0.45 1.2
+    ## q0007_0011  0.51       -0.24                   0.47 0.53 1.6
+    ## q0007_0012              0.27  0.22       -0.39 0.47 0.53 3.1
+    ## q0007_0013                    0.81             0.66 0.34 1.0
+    ## q0007_0014              0.20        0.29  0.43 0.52 0.48 2.9
+    ## q0007_0015                    0.40             0.28 0.72 1.6
+    ## q0007_0016        0.85                         0.74 0.26 1.1
+    ## q0007_0017        0.73                         0.59 0.41 1.0
+    ## q0007_0018        0.64                         0.46 0.54 1.1
+    ## q0007_0019              0.50             -0.23 0.29 0.71 1.8
+    ## q0007_0020                    0.60       -0.24 0.51 0.49 1.4
+    ## q0007_0021                          0.23  0.38 0.40 0.60 3.3
+    ## q0007_0022  0.56                               0.37 0.63 1.2
+    ## q0007_0023        0.20  0.57                   0.43 0.57 1.4
+    ## q0007_0024  0.83                               0.78 0.22 1.1
+    ## q0007_0025  0.82                               0.74 0.26 1.1
+    ## q0007_0026  0.61       -0.32                   0.60 0.40 1.5
+    ## q0007_0027              0.25  0.20       -0.47 0.53 0.47 2.7
+    ## q0007_0028                          0.72       0.58 0.42 1.2
+    ## q0007_0029                    0.81             0.62 0.38 1.1
+    ## q0007_0030  0.89                               0.83 0.17 1.1
+    ## q0007_0031              0.20        0.24  0.47 0.49 0.51 2.2
+    ## q0007_0032        0.37                         0.28 0.72 2.1
+    ## q0007_0033              0.33  0.21       -0.23 0.33 0.67 3.2
     ## 
-    ##                        MR1  MR6  MR4  MR2  MR3  MR5
-    ## SS loadings           3.34 2.66 2.25 2.11 2.03 1.71
-    ## Proportion Var        0.10 0.08 0.07 0.06 0.06 0.05
-    ## Cumulative Var        0.10 0.18 0.25 0.31 0.38 0.43
-    ## Proportion Explained  0.24 0.19 0.16 0.15 0.14 0.12
-    ## Cumulative Proportion 0.24 0.43 0.58 0.73 0.88 1.00
+    ##                        MR1  MR2  MR5  MR3  MR4  MR6
+    ## SS loadings           4.01 3.09 2.90 2.53 2.40 1.80
+    ## Proportion Var        0.12 0.09 0.09 0.08 0.07 0.05
+    ## Cumulative Var        0.12 0.22 0.30 0.38 0.45 0.51
+    ## Proportion Explained  0.24 0.18 0.17 0.15 0.14 0.11
+    ## Cumulative Proportion 0.24 0.42 0.60 0.75 0.89 1.00
     ## 
     ##  With factor correlations of 
-    ##       MR1   MR6   MR4   MR2   MR3   MR5
-    ## MR1  1.00 -0.44  0.14  0.06 -0.27 -0.22
-    ## MR6 -0.44  1.00  0.18  0.27  0.30  0.15
-    ## MR4  0.14  0.18  1.00  0.26  0.14 -0.08
-    ## MR2  0.06  0.27  0.26  1.00  0.01 -0.13
-    ## MR3 -0.27  0.30  0.14  0.01  1.00  0.31
-    ## MR5 -0.22  0.15 -0.08 -0.13  0.31  1.00
+    ##       MR1  MR2   MR5   MR3  MR4   MR6
+    ## MR1  1.00 0.23 -0.35 -0.24 0.15  0.16
+    ## MR2  0.23 1.00  0.14  0.12 0.37  0.21
+    ## MR5 -0.35 0.14  1.00  0.32 0.24 -0.06
+    ## MR3 -0.24 0.12  0.32  1.00 0.00 -0.24
+    ## MR4  0.15 0.37  0.24  0.00 1.00  0.22
+    ## MR6  0.16 0.21 -0.06 -0.24 0.22  1.00
     ## 
     ## Mean item complexity =  1.7
     ## Test of the hypothesis that 6 factors are sufficient.
     ## 
-    ## The degrees of freedom for the null model are  528  and the objective function was  12.25 with Chi Square of  3604.43
-    ## The degrees of freedom for the model are 345  and the objective function was  2.03 
+    ## The degrees of freedom for the null model are  528  and the objective function was  17.88 with Chi Square of  7315.51
+    ## The degrees of freedom for the model are 345  and the objective function was  3.61 
     ## 
     ## The root mean square of the residuals (RMSR) is  0.04 
-    ## The df corrected root mean square of the residuals is  0.04 
+    ## The df corrected root mean square of the residuals is  0.05 
     ## 
-    ## The harmonic number of observations is  268 with the empirical chi square  364.38  with prob <  0.23 
-    ## The total number of observations was  307  with Likelihood Chi Square =  590.18  with prob <  4e-15 
+    ## The harmonic number of observations is  367 with the empirical chi square  586  with prob <  9.7e-15 
+    ## The total number of observations was  422  with Likelihood Chi Square =  1464.67  with prob <  1.4e-137 
     ## 
-    ## Tucker Lewis Index of factoring reliability =  0.876
-    ## RMSEA index =  0.048  and the 90 % confidence intervals are  0.042 0.055
-    ## BIC =  -1385.59
-    ## Fit based upon off diagonal values = 0.97
+    ## Tucker Lewis Index of factoring reliability =  0.745
+    ## RMSEA index =  0.088  and the 90 % confidence intervals are  0.083 0.092
+    ## BIC =  -620.85
+    ## Fit based upon off diagonal values = 0.98
     ## Measures of factor score adequacy             
-    ##                                                    MR1  MR6 MR4  MR2  MR3  MR5
-    ## Correlation of (regression) scores with factors   0.94 0.92 0.9 0.89 0.90 0.85
-    ## Multiple R square of scores with factors          0.89 0.84 0.8 0.79 0.80 0.73
-    ## Minimum correlation of possible factor scores     0.78 0.68 0.6 0.59 0.61 0.45
+    ##                                                    MR1  MR2  MR5  MR3  MR4  MR6
+    ## Correlation of (regression) scores with factors   0.96 0.94 0.92 0.92 0.92 0.87
+    ## Multiple R square of scores with factors          0.93 0.89 0.85 0.85 0.85 0.76
+    ## Minimum correlation of possible factor scores     0.86 0.78 0.70 0.70 0.70 0.51
 
 ### Estructura interna:
 
 **Respecto a reflexibility:** la estructura general se mantiene de forma
-parcial, el ítem 6 no está asociado al factor.
+parcial, el ítem 6 y el 31 no están asociados al factor:
+
+6.- Para entender las acciones de los demás, es fundamental comprender
+lo que sienten
+
+31.- Soy una persona que piensa en los demás.
+
+Ambos ítems cargan al mismo factor, relational discomfort (ej. 27.- La
+gente me abandona)
 
 **Respecto a ego-strength:** la estructura general se mantiene.
 
-**Respecto a relational attunement:** la estructura general se mantiene.
+**Respecto a relational attunement:** (ej. 5.- Me puedo conectar con el
+estado mental de los demás). La estructura general se mantiene, aunque
+hay dos ítems con cargas factoriales notablemente más bajas.
+
+14.- Soy capaz de empatizar con otros cuando me cuentan algo.
+
+21.- Soy sensible a lo que le pasa a los demás.
+
+Estos ítems parecen estar más asociados a relational discomfort.
 
 **Respecto a relational discomfort:** la estructura se mantiene de forma
 parcial, el ítem 15 no se asocia al factor.
 
+15.- Me asusta abrirme con los demás.
+
+Este ítem está más asociado a distrust (ej. 13.- Es mejor tener cuidado
+con los demás)
+
+También el ítem 33 está muy poco asociado a este factor:
+
+33.- Algunas personas son la causa de mis problemas
+
+y está más asociado al factor emotional discontrol (ej. 7.- A veces
+siento que estoy perdiendo el control de mis emociones)
+
+Por último, este factor recibe cargas factoriales de los ítems 6, 14, 21
+y 31:
+
+6.- Para entender las acciones de los demás, es fundamental comprender
+lo que sienten.
+
+14.- Soy capaz de empatizar con otros cuando me cuentan algo.
+
+21.- Soy sensible a lo que le pasa a los demás.
+
+31.- Soy una persona que piensa en los demás.
+
+Las cargas factoriales promedios son bajas, por lo que no queda claro el
+contenido de este factor.
+
 **Respecto a distrust:** la estructura se mantiene de forma parcial, el
-ítem 19 no se asocia al mismo factor, y el ítem 15 (relational
-discomfort) sí se asocia.
+ítem 19 no se asocia al mismo factor:
+
+19.- Para mí las cosas son blancas o son negras.
+
+Este ítem carga al factor emotional discontrol (ej. 2.- Soy una persona
+impulsiva)
+
+El ítem 15 (15.- Me asusta abrirme con los demás) si bien teóricamente
+se lo ubicaba en relational discomfort, ahora se lo ubica en distrust
+(ej. Es mejor tener cuidado con los desconocidos).
 
 **Respecto a emotional discontrol:** la estructura se mantiene en su
-totalidad.
+totalidad, aunque habría que agregar el 19:
 
-**Notas generales:** El ítem 6 (Para entender las acciones de los demás,
-es fundamental comprender lo que sienten) tiene baja carga con todos los
-factores, y su asociación más alta es con el factor “relational
-attunement”, no con reflexión. Esto, en base a su contenido, tiene
-sentido.
+19.- Para mí las cosas son blancas o son negras
+
+**Notas generales:**
+
+El factor menos claro en cuanto a su contenido es emotional discomfort,
+ya que las cargas de los ítems teóricamente asociados es baja (menores a
+.50) y además tienden a cargar al mismo factor que otros 4 ítems,
+teóricamente asociados a factores distintos:
+
+6.- Para entender las acciones de los demás, es fundamental comprender
+lo que sienten.
+
+14.- Soy capaz de empatizar con otros cuando me cuentan algo.
+
+21.- Soy sensible a lo que le pasa a los demás.
+
+31.- Soy una persona que piensa en los demás.
+
+Todos estos ítems tienen cargas bajas en general, y muestran su mayor
+asociación con los ítems de emotional discomfort. Respecto al ítem 14 y
+21 (originalmente de relational attunement), el 6 y el 31
+(reflexibility), una hipótesis es que comparten en su contenido la
+sensibilidad por los demás, de manera afectiva. En particular, el factor
+de relational attunement agrupa ítems centrados en la empatía cognitiva,
+y los ítems 14 y 21 tienen que ver con empatía afectiva. Por otro lado,
+en reflexibility los ítems se centran en analizar el propio
+comportamiento, y los ítems 6 y 31 se centran en la preocupación por los
+demás.
+
+Por su parte, relational attunement prácticamente perdió la mitad de sus
+ítems asociados, ya que solo cargan fuertemente al mismo factor:
+
+4.- Soy capaz de captar los aspectos más profundos de las personas que
+me rodean.
+
+5.- Me puedo conectar con el estado mental de los demás.
+
+28.- Puedo conectarme fácilmente con lo que piensan las otras personas.
+
+A su vez el ítem 15 (Me asusta abrirme con los demás) se asocia al
+factor distrust.
 
 El ítem 19 (Para mí las cosas son blancas o son negras) se asocia a
-emotional discontrol (aunque poco) y un poco a relational discomfort y
-no a distrust.
-
-El ítem 15 (Me asusta abrirme con los demás) se asocia a distrust y no a
-relational discomfort.
+emotional discontrol
 
 ### Descripción y depuración del MentS:
 
@@ -495,7 +611,7 @@ fa.parallel(ments)
 
 ![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
-    ## Parallel analysis suggests that the number of factors =  6  and the number of components =  4
+    ## Parallel analysis suggests that the number of factors =  5  and the number of components =  4
 
 ``` r
 fa_ments = fa(ments, nfactors = 3, rotate = "oblimin", cor = "poly")
@@ -505,70 +621,70 @@ print(fa_ments, cut = 0.3)
     ## Factor Analysis using method =  minres
     ## Call: fa(r = ments, nfactors = 3, rotate = "oblimin", cor = "poly")
     ## Standardized loadings (pattern matrix) based upon correlation matrix
-    ##              MR1   MR2   MR3   h2   u2 com
-    ## q0008_0001  0.72             0.45 0.55 1.1
-    ## q0008_0002  0.38             0.23 0.77 1.4
-    ## q0008_0003              0.53 0.40 0.60 1.4
-    ## q0008_0004  0.55             0.49 0.51 1.8
-    ## q0008_0005              0.50 0.35 0.65 1.3
-    ## q0008_0006              0.39 0.32 0.68 1.8
-    ## q0008_0007  0.45             0.21 0.79 1.0
-    ## q0008_0008        0.72       0.54 0.46 1.0
-    ## q0008_0009  0.45             0.35 0.65 1.5
-    ## q0008_0010              0.30 0.14 0.86 1.5
-    ## q0008_0011        0.73       0.54 0.46 1.0
-    ## q0008_0012              0.59 0.41 0.59 1.1
-    ## q0008_0013  0.66             0.45 0.55 1.1
-    ## q0008_0014  0.43  0.36 -0.33 0.35 0.65 2.9
-    ## q0008_0015  0.63             0.41 0.59 1.0
-    ## q0008_0016                   0.15 0.85 2.5
-    ## q0008_0017  0.45             0.25 0.75 1.1
-    ## q0008_0018        0.51       0.30 0.70 1.3
-    ## q0008_0019        0.42 -0.34 0.31 0.69 2.5
-    ## q0008_0020              0.63 0.43 0.57 1.1
-    ## q0008_0021        0.86       0.73 0.27 1.0
-    ## q0008_0022        0.76       0.59 0.41 1.2
-    ## q0008_0023              0.54 0.37 0.63 1.2
-    ## q0008_0024  0.64             0.60 0.40 1.4
-    ## q0008_0025        0.68       0.52 0.48 1.1
-    ## q0008_0026        0.31       0.26 0.74 2.7
-    ## q0008_0027  0.45             0.29 0.71 1.3
-    ## q0008_0028  0.40             0.22 0.78 1.2
+    ##              MR2   MR1   MR3   h2   u2 com
+    ## q0008_0001        0.73       0.46 0.54 1.1
+    ## q0008_0002        0.35       0.22 0.78 1.6
+    ## q0008_0003              0.67 0.54 0.46 1.1
+    ## q0008_0004        0.49  0.31 0.47 0.53 2.3
+    ## q0008_0005              0.61 0.43 0.57 1.1
+    ## q0008_0006              0.43 0.35 0.65 1.7
+    ## q0008_0007        0.47       0.23 0.77 1.0
+    ## q0008_0008  0.69             0.48 0.52 1.0
+    ## q0008_0009        0.47       0.36 0.64 1.4
+    ## q0008_0010              0.47 0.22 0.78 1.0
+    ## q0008_0011  0.66             0.46 0.54 1.0
+    ## q0008_0012              0.65 0.44 0.56 1.0
+    ## q0008_0013        0.60       0.41 0.59 1.1
+    ## q0008_0014  0.41  0.42 -0.31 0.35 0.65 2.8
+    ## q0008_0015        0.57       0.34 0.66 1.0
+    ## q0008_0016                   0.21 0.79 2.4
+    ## q0008_0017        0.43       0.24 0.76 1.1
+    ## q0008_0018  0.58             0.35 0.65 1.1
+    ## q0008_0019  0.47             0.25 0.75 1.4
+    ## q0008_0020              0.67 0.46 0.54 1.0
+    ## q0008_0021  0.88             0.76 0.24 1.0
+    ## q0008_0022  0.74             0.59 0.41 1.1
+    ## q0008_0023              0.52 0.37 0.63 1.2
+    ## q0008_0024        0.67       0.58 0.42 1.2
+    ## q0008_0025  0.68             0.55 0.45 1.2
+    ## q0008_0026                   0.30 0.70 2.8
+    ## q0008_0027        0.43       0.26 0.74 1.3
+    ## q0008_0028        0.43       0.25 0.75 1.2
     ## 
-    ##                        MR1  MR2  MR3
-    ## SS loadings           4.10 3.76 2.81
-    ## Proportion Var        0.15 0.13 0.10
-    ## Cumulative Var        0.15 0.28 0.38
-    ## Proportion Explained  0.38 0.35 0.26
-    ## Cumulative Proportion 0.38 0.74 1.00
+    ##                        MR2  MR1  MR3
+    ## SS loadings           3.83 3.84 3.24
+    ## Proportion Var        0.14 0.14 0.12
+    ## Cumulative Var        0.14 0.27 0.39
+    ## Proportion Explained  0.35 0.35 0.30
+    ## Cumulative Proportion 0.35 0.70 1.00
     ## 
     ##  With factor correlations of 
-    ##      MR1  MR2  MR3
-    ## MR1 1.00 0.13 0.39
-    ## MR2 0.13 1.00 0.00
-    ## MR3 0.39 0.00 1.00
+    ##      MR2  MR1  MR3
+    ## MR2 1.00 0.15 0.11
+    ## MR1 0.15 1.00 0.42
+    ## MR3 0.11 0.42 1.00
     ## 
     ## Mean item complexity =  1.4
     ## Test of the hypothesis that 3 factors are sufficient.
     ## 
-    ## The degrees of freedom for the null model are  378  and the objective function was  12.93 with Chi Square of  3178.31
-    ## The degrees of freedom for the model are 297  and the objective function was  4.41 
+    ## The degrees of freedom for the null model are  378  and the objective function was  12.16 with Chi Square of  4094.23
+    ## The degrees of freedom for the model are 297  and the objective function was  3.38 
     ## 
     ## The root mean square of the residuals (RMSR) is  0.06 
     ## The df corrected root mean square of the residuals is  0.07 
     ## 
-    ## The harmonic number of observations is  257 with the empirical chi square  819.88  with prob <  1.6e-50 
-    ## The total number of observations was  257  with Likelihood Chi Square =  1075.65  with prob <  1e-88 
+    ## The harmonic number of observations is  348 with the empirical chi square  882.51  with prob <  2e-59 
+    ## The total number of observations was  348  with Likelihood Chi Square =  1132.35  with prob <  9.6e-98 
     ## 
-    ## Tucker Lewis Index of factoring reliability =  0.643
-    ## RMSEA index =  0.101  and the 90 % confidence intervals are  0.095 0.108
-    ## BIC =  -572.43
-    ## Fit based upon off diagonal values = 0.93
+    ## Tucker Lewis Index of factoring reliability =  0.712
+    ## RMSEA index =  0.09  and the 90 % confidence intervals are  0.085 0.096
+    ## BIC =  -605.75
+    ## Fit based upon off diagonal values = 0.95
     ## Measures of factor score adequacy             
-    ##                                                    MR1  MR2  MR3
-    ## Correlation of (regression) scores with factors   0.93 0.95 0.90
-    ## Multiple R square of scores with factors          0.87 0.90 0.81
-    ## Minimum correlation of possible factor scores     0.73 0.80 0.61
+    ##                                                    MR2  MR1  MR3
+    ## Correlation of (regression) scores with factors   0.95 0.93 0.92
+    ## Multiple R square of scores with factors          0.90 0.86 0.84
+    ## Minimum correlation of possible factor scores     0.81 0.72 0.69
 
 **Respecto al factor de Motivation:**
 
@@ -702,7 +818,7 @@ acciones.
 ### EQ:
 
 El Empathy Quotient \[EQ\] fue adaptado a la población chilena y cuenta
-con evidencia de validez en esta población (revisar pepar). Este
+con evidencia de validez en esta población (revisar paper). Este
 instrumento cuenta con 3 subdimensiones: empatía cognitiva, reactividad
 emocional y habilidades sociales.
 
@@ -717,16 +833,16 @@ naniar::miss_var_summary(items_eq)
     ## # A tibble: 60 x 3
     ##    variable   n_miss pct_miss
     ##    <chr>       <int>    <dbl>
-    ##  1 q0009_0001     81     26.4
-    ##  2 q0009_0002     81     26.4
-    ##  3 q0009_0003     81     26.4
-    ##  4 q0009_0004     81     26.4
-    ##  5 q0009_0005     81     26.4
-    ##  6 q0009_0006     81     26.4
-    ##  7 q0009_0007     81     26.4
-    ##  8 q0009_0008     81     26.4
-    ##  9 q0009_0009     81     26.4
-    ## 10 q0009_0010     81     26.4
+    ##  1 q0009_0001    112     26.5
+    ##  2 q0009_0002    112     26.5
+    ##  3 q0009_0003    112     26.5
+    ##  4 q0009_0004    112     26.5
+    ##  5 q0009_0005    112     26.5
+    ##  6 q0009_0006    112     26.5
+    ##  7 q0009_0007    112     26.5
+    ##  8 q0009_0008    112     26.5
+    ##  9 q0009_0009    112     26.5
+    ## 10 q0009_0010    112     26.5
     ## # ... with 50 more rows
 
 ``` r
@@ -765,16 +881,16 @@ naniar::miss_var_summary(items_iri)
     ## # A tibble: 28 x 3
     ##    variable   n_miss pct_miss
     ##    <chr>       <int>    <dbl>
-    ##  1 q0010_0001     92     30.0
-    ##  2 q0010_0002     92     30.0
-    ##  3 q0010_0003     92     30.0
-    ##  4 q0010_0004     92     30.0
-    ##  5 q0010_0005     92     30.0
-    ##  6 q0010_0006     92     30.0
-    ##  7 q0010_0007     92     30.0
-    ##  8 q0010_0008     92     30.0
-    ##  9 q0010_0009     92     30.0
-    ## 10 q0010_0010     92     30.0
+    ##  1 q0010_0001    125     29.6
+    ##  2 q0010_0002    125     29.6
+    ##  3 q0010_0003    125     29.6
+    ##  4 q0010_0004    125     29.6
+    ##  5 q0010_0005    125     29.6
+    ##  6 q0010_0006    125     29.6
+    ##  7 q0010_0007    125     29.6
+    ##  8 q0010_0008    125     29.6
+    ##  9 q0010_0009    125     29.6
+    ## 10 q0010_0010    125     29.6
     ## # ... with 18 more rows
 
 ``` r
@@ -782,6 +898,8 @@ vis_miss(items_iri)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+
+Reversar ítems:
 
 ``` r
 items_iri$fs = NULL
@@ -801,4 +919,61 @@ items_iri$pd = rowSums(items_iri[,c(6,10,13,17,19,24,27)])
 items_iri$pt = rowSums(items_iri[,c(3,8,11,15,21,25,28)])
 
 items_iri$ec = rowSums(items_iri[,c(2,4,9,14,18,20,22)])
+```
+
+## Buss Perry Aggression Questionnaire (BPAQ)
+
+Este instrumento está compuesto por 4 factores: agresión física,
+agresión verbal, rabia y hostilidad.
+
+Agresión física: 1,5,9,17,21,27,29
+
+Agresión verbal: 2,6,14,18
+
+Anger: 3,7,11,22
+
+Hostilidad: 4,16,20,26,28
+
+``` r
+items_aq = datos %>% select(starts_with("q0011"))
+```
+
+``` r
+naniar::miss_var_summary(items_aq)
+```
+
+    ## # A tibble: 29 x 3
+    ##    variable   n_miss pct_miss
+    ##    <chr>       <int>    <dbl>
+    ##  1 q0011_0001    132     31.3
+    ##  2 q0011_0002    132     31.3
+    ##  3 q0011_0003    132     31.3
+    ##  4 q0011_0004    132     31.3
+    ##  5 q0011_0005    132     31.3
+    ##  6 q0011_0006    132     31.3
+    ##  7 q0011_0007    132     31.3
+    ##  8 q0011_0008    132     31.3
+    ##  9 q0011_0009    132     31.3
+    ## 10 q0011_0010    132     31.3
+    ## # ... with 19 more rows
+
+``` r
+vis_miss(items_aq)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+
+Agresión física: 1,5,9,17,21,27,29
+
+Agresión verbal: 2,6,14,18
+
+Anger: 3,7,11,22
+
+Hostilidad: 4,16,20,26,28
+
+``` r
+items_aq$af = rowSums(items_aq[,c(1,5,9,17,21,27,29)])
+items_aq$av = rowSums(items_aq[,c(2,6,14,18)])
+items_aq$ang = rowSums(items_aq[,c(3,7,11,22)])
+items_aq$host = rowSums(items_aq[,c(4,16,20,26,28)])
 ```

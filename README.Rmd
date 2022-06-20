@@ -19,15 +19,11 @@ datos = datos %>% mutate(across(.cols = 1:16, .fns = function(x){unlabelled(x)})
 
 Este estudio contó con 3 etapas: traducción y adaptación, entrevistas cognitivas y finalmente el análisis psicométricos.
 
-El proceso de traducción y adaptación de los ítems tuvo como enfoque reducir características irrelevantes del constructo a partir de una adpatación que diera cuenta de las características culturales de la población objetivo (APA, 2014). Por ello, los todos los ítems fueron fueron traducidos de dos formas: una forma literal, y una forma adaptada, buscando que esta última abordara los modos expresivos propios de la cultura Chilena. Ambas traducciones, junto con los ítems en inglés, fueron expuestos a un panel de 4 personas, compuesto por 2 psicolingüistas y 2 lingüistas, quienes analizaron y evaluaron las traducciones siguiendo un proceso adaptado de Solano et al.(2012), en el cual se analizan 10 dimensiones en que pueden haber errores de adaptación en el proceso de traducción: estilo, formato, convenciones, información, gramática, semántica, registro, cultura y origen (error en el ítem en su versión original). Los ítems en los que se detectó algún error fueron discutidos hasta que se llegó a un consenso. 
+El proceso de traducción y adaptación de los ítems tuvo como enfoque reducir características irrelevantes del constructo a partir de una adpatación que diera cuenta de las características culturales de la población objetivo (APA, 2014). Por ello, los todos los ítems fueron fueron traducidos de dos formas: una forma literal, y una forma adaptada, buscando que esta última abordara los modos expresivos propios de la cultura Chilena. Ambas traducciones, junto con los ítems en inglés, fueron expuestos a un panel de 4 personas, compuesto por 2 psicolingüistas y 2 lingüistas, quienes analizaron y evaluaron las traducciones siguiendo un proceso adaptado de Solano et al.(2012), en el cual se analizan 10 dimensiones en que pueden haber errores de adaptación en el proceso de traducción: estilo, formato, convenciones, información, gramática, semántica, registro, cultura y origen (error en el ítem en su versión original). Los ítems en los que se detectó algún error fueron discutidos hasta que se llegó a un consenso respecto a una versión final del ítem que no tuviera errores.
 
-En el caso del MMQ, se consensuaron 15 errores, de los cuales 11 fueron en el área de registro (La traducción no refleja las formas discursivas o expresivas locales (ej. la traducción suena poco natural en el uso del lenguaje), 5 fueron en el área semántica (la traducción altera el significado original), y 2 fueron en el área de información (la traducción altera la cantidad de información).
+En el caso del MMQ, se consensuaron 15 ítems con errores, de los cuales 11 fueron en el área de registro (La traducción no refleja las formas discursivas o expresivas locales (ej. la traducción suena poco natural en el uso del lenguaje), 5 fueron en el área semántica (la traducción altera el significado original), y 2 fueron en el área de información (la traducción altera la cantidad de información).
 
-En el caso del MentS se consensuaron 21 errores, de los cuales 19 fueron en el área del registro, 7 en el área semántica, 1 en el área de información. 
-
-
-
-
+En el caso del MentS se consensuaron 21 ítems con errores, de los cuales 19 fueron en el área del registro, 7 en el área semántica, 1 en el área de información. 
 
 
 
@@ -209,31 +205,116 @@ Al parecer es una buena solución 6 factores
 
 
 ```{r}
-print(fa(datos[,17:49], nfactors = 6,rotate = "oblimin"),cut = .2)
+print(fa(datos[,17:49], nfactors = 6,rotate = "oblimin", cor = "poly"),cut = .2)
 ```
 
 
 ### Estructura interna:
 
-**Respecto a reflexibility:** la estructura general se mantiene de forma parcial, el ítem 6 no está asociado al factor.
+**Respecto a reflexibility:** la estructura general se mantiene de forma parcial, el ítem 6 y el 31 no están asociados al factor:
+
+
+6.- Para entender las acciones de los demás, es fundamental comprender lo que sienten
+
+31.- Soy una persona que piensa en los demás.
+
+Ambos ítems cargan al mismo factor, relational discomfort (ej. 27.- La gente me abandona)
+
 
 **Respecto a ego-strength:** la estructura general se mantiene.
 
-**Respecto a relational attunement:** la estructura general se mantiene.
+
+
+**Respecto a relational attunement:** (ej. 5.- Me puedo conectar con el estado mental de los demás). La estructura general se mantiene, aunque hay dos ítems con cargas factoriales notablemente más bajas.
+
+
+14.- Soy capaz de empatizar con otros cuando me cuentan algo.
+
+
+21.- Soy sensible a lo que le pasa a los demás.
+
+
+Estos ítems parecen estar más asociados a relational discomfort.
 
 **Respecto a relational discomfort:** la estructura se mantiene de forma parcial, el ítem 15 no se asocia al factor.
 
-**Respecto a distrust:** la estructura se mantiene de forma parcial, el ítem 19 no se asocia al mismo factor, y el ítem 15 (relational discomfort) sí se asocia.
+15.- Me asusta abrirme con los demás.
 
-**Respecto a emotional discontrol:** la estructura se mantiene en su totalidad.
+Este ítem está más asociado a distrust (ej. 13.- Es mejor tener cuidado con los demás)
+
+También el ítem 33 está muy poco asociado a este factor:
+
+33.- Algunas personas son la causa de mis problemas
+
+y está más asociado al factor emotional discontrol (ej. 7.- A veces siento que estoy perdiendo el control de mis emociones)
 
 
-**Notas generales:** 
-El ítem 6 (Para entender las acciones de los demás, es fundamental comprender lo que sienten) tiene baja carga con todos los factores, y su asociación más alta es con el factor "relational attunement", no con reflexión. Esto, en base a su contenido, tiene sentido.
+Por último, este factor recibe cargas factoriales de los ítems 6, 14, 21 y 31:
 
-El ítem 19 (Para mí las cosas son blancas o son negras) se asocia a emotional discontrol (aunque poco) y un poco a relational discomfort y no a distrust.
 
-El ítem 15 (Me asusta abrirme con los demás) se asocia a distrust y no a relational discomfort.
+6.- Para entender las acciones de los demás, es fundamental comprender lo que sienten.
+
+
+14.- Soy capaz de empatizar con otros cuando me cuentan algo.
+
+
+21.- Soy sensible a lo que le pasa a los demás.
+
+
+31.- Soy una persona que piensa en los demás.
+
+
+Las cargas factoriales promedios son bajas, por lo que no queda claro el contenido de este factor.
+
+**Respecto a distrust:** la estructura se mantiene de forma parcial, el ítem 19 no se asocia al mismo factor:
+
+19.- Para mí las cosas son blancas o son negras.
+
+Este ítem carga al factor emotional discontrol (ej. 2.- Soy una persona impulsiva)
+
+El ítem 15 (15.- Me asusta abrirme con los demás) si bien teóricamente se lo ubicaba en relational discomfort, ahora se lo ubica en distrust (ej. Es mejor tener cuidado con los desconocidos).
+
+
+**Respecto a emotional discontrol:** la estructura se mantiene en su totalidad, aunque habría que agregar el 19:
+
+19.- Para mí las cosas son blancas o son negras
+
+
+
+**Notas generales:**
+
+El factor menos claro en cuanto a su contenido es emotional discomfort, ya que las cargas de los ítems teóricamente asociados es baja (menores a .50) y además tienden a cargar al mismo factor que otros 4 ítems, teóricamente asociados a factores distintos:
+
+
+6.- Para entender las acciones de los demás, es fundamental comprender lo que sienten.
+
+
+14.- Soy capaz de empatizar con otros cuando me cuentan algo.
+
+
+21.- Soy sensible a lo que le pasa a los demás.
+
+
+31.- Soy una persona que piensa en los demás.
+
+
+Todos estos ítems tienen cargas bajas en general, y muestran su mayor asociación con los ítems de emotional discomfort. Respecto al ítem 14 y 21 (originalmente de relational attunement), el 6 y el 31 (reflexibility), una hipótesis es que comparten en su contenido la sensibilidad por los demás, de manera afectiva. En particular, el factor de relational attunement agrupa ítems centrados en la empatía cognitiva, y los ítems 14 y 21 tienen que ver con empatía afectiva. Por otro lado, en reflexibility los ítems se centran en analizar el propio comportamiento, y los ítems 6 y 31 se centran en la preocupación por los demás.
+
+
+Por su parte, relational attunement prácticamente perdió la mitad de sus ítems asociados, ya que solo cargan fuertemente al mismo factor:
+
+4.- Soy capaz de captar los aspectos más profundos de las personas que me rodean.
+
+5.- Me puedo conectar con el estado mental de los demás.
+
+28.- Puedo conectarme fácilmente con lo que piensan las otras personas.
+
+
+A su vez el ítem 15 (Me asusta abrirme con los demás) se asocia al factor distrust.
+
+
+El ítem 19 (Para mí las cosas son blancas o son negras) se asocia a emotional discontrol
+
 
 
 ### Descripción y depuración del MentS:
@@ -444,7 +525,7 @@ A nivel central, refiere a la percepción del grado de claridad/confusión que t
 
 ### EQ:
 
-El Empathy Quotient [EQ] fue adaptado a la población chilena y cuenta con evidencia de validez en esta población (revisar pepar).
+El Empathy Quotient [EQ] fue adaptado a la población chilena y cuenta con evidencia de validez en esta población (revisar paper).
 Este instrumento cuenta con 3 subdimensiones: empatía cognitiva, reactividad emocional y habilidades sociales.
 
 ```{r}
@@ -492,6 +573,7 @@ naniar::miss_var_summary(items_iri)
 vis_miss(items_iri)
 ```
 
+Reversar ítems:
 
 ```{r}
 items_iri$fs = NULL
@@ -510,4 +592,45 @@ items_iri$ec = rowSums(items_iri[,c(2,4,9,14,18,20,22)])
 ```
 
 
+
+## Buss Perry Aggression Questionnaire (BPAQ)
+
+Este instrumento está compuesto por 4 factores: agresión física, agresión verbal, rabia y hostilidad.
+
+Agresión física: 1,5,9,17,21,27,29
+
+Agresión verbal: 2,6,14,18
+
+Anger: 3,7,11,22
+
+Hostilidad: 4,16,20,26,28
+
+
+```{r}
+
+items_aq = datos %>% select(starts_with("q0011"))
+
+```
+
+
+```{r}
+naniar::miss_var_summary(items_aq)
+vis_miss(items_aq)
+```
+
+
+Agresión física: 1,5,9,17,21,27,29
+
+Agresión verbal: 2,6,14,18
+
+Anger: 3,7,11,22
+
+Hostilidad: 4,16,20,26,28
+
+```{r}
+items_aq$af = rowSums(items_aq[,c(1,5,9,17,21,27,29)])
+items_aq$av = rowSums(items_aq[,c(2,6,14,18)])
+items_aq$ang = rowSums(items_aq[,c(3,7,11,22)])
+items_aq$host = rowSums(items_aq[,c(4,16,20,26,28)])
+```
 
