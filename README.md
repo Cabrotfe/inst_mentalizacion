@@ -555,6 +555,459 @@ factor distrust.
 El ítem 19 (Para mí las cosas son blancas o son negras) se asocia a
 emotional discontrol
 
+## Alfa de escalas originales y propuestas:
+
+F1 (reflexión): 1,6,8,10,16,17,18,31,32
+
+F2 (ego-strength): 11,22,24,25,26,30
+
+F3 (relational attunement): 4,5,14,21,28
+
+**Escalas negativas:**
+
+F4 (relational discomfort): 9,12,15,27,33
+
+F5 (distrust): 13,19,20,29
+
+F6 (emotional discontrol):2,3,7,23
+
+``` r
+items_mmqn = datos %>% select(17:49)
+```
+
+Ego:
+
+``` r
+a = omega(items_mmqn[,c(11,22,24,25,26,30)])
+```
+
+![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+``` r
+a$alpha
+```
+
+    ## [1] 0.8502274
+
+``` r
+a$omega.tot
+```
+
+    ## [1] 0.8989279
+
+Reflex:
+
+``` r
+a1 = omega(items_mmqn[,c(1,6,8,10,16,17,18,31,32)])
+```
+
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+``` r
+a1$alpha
+```
+
+    ## [1] 0.7132676
+
+``` r
+a1$omega.tot
+```
+
+    ## [1] 0.784014
+
+``` r
+a2 = omega(items_mmqn[,c(8,10,16,17,18,32)])
+```
+
+![](README_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
+
+``` r
+a2$alpha
+```
+
+    ## [1] 0.7165532
+
+``` r
+a2$omega.tot
+```
+
+    ## [1] 0.8252617
+
+Relational attunement
+
+``` r
+aa = omega(items_mmqn[,c(4,5,14,21,28)])
+```
+
+    ## Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+    ## The estimated weights for the factor scores are probably incorrect. Try a
+    ## different factor score estimation method.
+
+    ## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+    ## ultra-Heywood case was detected. Examine the results carefully
+
+    ## Warning in cov2cor(t(w) %*% r %*% w): diag(.) had 0 or NA entries; non-finite
+    ## result is doubtful
+
+![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+``` r
+aa$alpha
+```
+
+    ## [1] 0.7389508
+
+``` r
+aa$omega.tot
+```
+
+    ## [1] 0.7954456
+
+``` r
+a2 = omega(items_mmqn[,c(4,5,28,14)])
+```
+
+![](README_files/figure-gfm/unnamed-chunk-18-2.png)<!-- -->
+
+``` r
+a2$alpha
+```
+
+    ## [1] 0.7339683
+
+``` r
+a2$omega.tot
+```
+
+    ## [1] 0.753647
+
+``` r
+alpha(items_mmqn[,c(4,5,28,14)])
+```
+
+    ## 
+    ## Reliability analysis   
+    ## Call: alpha(x = items_mmqn[, c(4, 5, 28, 14)])
+    ## 
+    ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+    ##       0.74      0.73    0.69      0.41 2.8 0.019  3.9 0.57     0.39
+    ## 
+    ##  lower alpha upper     95% confidence boundaries
+    ## 0.7 0.74 0.78 
+    ## 
+    ##  Reliability if an item is dropped:
+    ##            raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r med.r
+    ## q0007_0004      0.62      0.62    0.54      0.36 1.7    0.030 0.0103  0.31
+    ## q0007_0005      0.63      0.63    0.55      0.36 1.7    0.029 0.0126  0.31
+    ## q0007_0028      0.67      0.66    0.60      0.40 2.0    0.025 0.0237  0.31
+    ## q0007_0014      0.76      0.76    0.68      0.51 3.2    0.020 0.0029  0.49
+    ## 
+    ##  Item statistics 
+    ##              n raw.r std.r r.cor r.drop mean   sd
+    ## q0007_0004 367  0.83  0.80  0.72   0.62  3.8 0.86
+    ## q0007_0005 367  0.82  0.79  0.71   0.61  3.7 0.87
+    ## q0007_0028 367  0.74  0.76  0.63   0.55  3.8 0.69
+    ## q0007_0014 367  0.58  0.64  0.42   0.37  4.4 0.58
+    ## 
+    ## Non missing response frequency for each item
+    ##               1    2    3    4    5 miss
+    ## q0007_0004 0.01 0.05 0.28 0.47 0.19 0.13
+    ## q0007_0005 0.02 0.07 0.26 0.50 0.16 0.13
+    ## q0007_0028 0.00 0.04 0.24 0.61 0.11 0.13
+    ## q0007_0014 0.00 0.00 0.03 0.49 0.47 0.13
+
+Emotional dyscontrol
+
+``` r
+a1 = omega(items_mmqn[,c(2,3,7,23)])
+```
+
+![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
+``` r
+a1$alpha
+```
+
+    ## [1] 0.7589099
+
+``` r
+a1$omega.tot
+```
+
+    ## [1] 0.7819534
+
+``` r
+a2 = omega(items_mmqn[,c(2,3,7,23,19)])
+```
+
+    ## Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+    ## The estimated weights for the factor scores are probably incorrect. Try a
+    ## different factor score estimation method.
+
+    ## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+    ## ultra-Heywood case was detected. Examine the results carefully
+
+    ## Warning in cov2cor(t(w) %*% r %*% w): diag(.) had 0 or NA entries; non-finite
+    ## result is doubtful
+
+![](README_files/figure-gfm/unnamed-chunk-19-2.png)<!-- -->
+
+``` r
+a2$alpha
+```
+
+    ## [1] 0.7386027
+
+``` r
+a2$omega.tot
+```
+
+    ## [1] 0.7956316
+
+Distrust
+
+``` r
+a1 = omega(items_mmqn[,c(13,19,20,29)])
+```
+
+![](README_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+``` r
+a1$alpha
+```
+
+    ## [1] 0.6880179
+
+``` r
+a1$omega.tot
+```
+
+    ## [1] 0.7575893
+
+``` r
+a2 = omega(items_mmqn[,c(13,15,20,29)])
+```
+
+    ## Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+    ## The estimated weights for the factor scores are probably incorrect. Try a
+    ## different factor score estimation method.
+
+    ## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+    ## ultra-Heywood case was detected. Examine the results carefully
+
+    ## Warning in cov2cor(t(w) %*% r %*% w): diag(.) had 0 or NA entries; non-finite
+    ## result is doubtful
+
+![](README_files/figure-gfm/unnamed-chunk-20-2.png)<!-- -->
+
+``` r
+a2$alpha
+```
+
+    ## [1] 0.7395871
+
+``` r
+a2$omega.tot
+```
+
+    ## [1] 0.7949024
+
+``` r
+a3 = omega(items_mmqn[,c(13,15,19,20,29)])
+```
+
+![](README_files/figure-gfm/unnamed-chunk-20-3.png)<!-- -->
+
+``` r
+a3$alpha
+```
+
+    ## [1] 0.6973013
+
+``` r
+a3$omega.tot
+```
+
+    ## [1] 0.82788
+
+Relational Discomfort
+
+``` r
+a1 = omega(items_mmqn[,c(9,12,15,27,33)])
+```
+
+    ## Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+    ## The estimated weights for the factor scores are probably incorrect. Try a
+    ## different factor score estimation method.
+
+    ## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+    ## ultra-Heywood case was detected. Examine the results carefully
+
+    ## Warning in cov2cor(t(w) %*% r %*% w): diag(.) had 0 or NA entries; non-finite
+    ## result is doubtful
+
+![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+
+``` r
+a1$alpha
+```
+
+    ## [1] 0.6968813
+
+``` r
+a1$omega.tot
+```
+
+    ## [1] 0.7212342
+
+``` r
+a2 = omega(items_mmqn[,c(9,12,27)])
+```
+
+    ## Warning in cov2cor(t(w) %*% r %*% w): diag(.) had 0 or NA entries; non-finite
+    ## result is doubtful
+
+![](README_files/figure-gfm/unnamed-chunk-21-2.png)<!-- -->
+
+``` r
+a2$alpha
+```
+
+    ## [1] 0.6732787
+
+``` r
+a2$omega.tot
+```
+
+    ## [1] 0.6828935
+
+``` r
+a2 = alpha(items_mmqn[,c(9,12,27,33,6)],check.keys=TRUE)
+```
+
+    ## Warning in alpha(items_mmqn[, c(9, 12, 27, 33, 6)], check.keys = TRUE): Some items were negatively correlated with total scale and were automatically reversed.
+    ##  This is indicated by a negative sign for the variable name.
+
+``` r
+a2
+```
+
+    ## 
+    ## Reliability analysis   
+    ## Call: alpha(x = items_mmqn[, c(9, 12, 27, 33, 6)], check.keys = TRUE)
+    ## 
+    ##   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd median_r
+    ##       0.63      0.61    0.59      0.24 1.6 0.026  2.2 0.63     0.29
+    ## 
+    ##  lower alpha upper     95% confidence boundaries
+    ## 0.58 0.63 0.68 
+    ## 
+    ##  Reliability if an item is dropped:
+    ##             raw_alpha std.alpha G6(smc) average_r  S/N alpha se  var.r med.r
+    ## q0007_0009       0.57      0.53    0.51      0.22 1.15    0.031 0.0426  0.22
+    ## q0007_0012       0.51      0.48    0.44      0.18 0.91    0.037 0.0243  0.16
+    ## q0007_0027       0.49      0.46    0.43      0.18 0.87    0.038 0.0256  0.16
+    ## q0007_0033       0.59      0.56    0.53      0.24 1.29    0.030 0.0344  0.23
+    ## q0007_0006-      0.69      0.69    0.64      0.36 2.24    0.025 0.0076  0.36
+    ## 
+    ##  Item statistics 
+    ##               n raw.r std.r r.cor r.drop mean   sd
+    ## q0007_0009  367  0.66  0.65  0.51  0.408  2.1 1.00
+    ## q0007_0012  367  0.73  0.73  0.66  0.533  2.6 0.96
+    ## q0007_0027  367  0.76  0.74  0.68  0.542  2.2 1.08
+    ## q0007_0033  367  0.66  0.61  0.45  0.369  2.6 1.11
+    ## q0007_0006- 367  0.30  0.39  0.10  0.076  1.5 0.70
+    ## 
+    ## Non missing response frequency for each item
+    ##               1    2    3    4    5 miss
+    ## q0007_0009 0.33 0.38 0.20 0.06 0.03 0.13
+    ## q0007_0012 0.12 0.39 0.34 0.13 0.03 0.13
+    ## q0007_0027 0.29 0.34 0.22 0.12 0.03 0.13
+    ## q0007_0033 0.17 0.33 0.26 0.19 0.05 0.13
+    ## q0007_0006 0.01 0.01 0.03 0.37 0.58 0.13
+
+``` r
+a2$omega.tot
+```
+
+    ## NULL
+
+``` r
+mmqfa2=fa(items_mmqn[,c(2:5,7:13,15:18,20,22:30,32:33)],cor="poly", nfactors = 6)
+print(mmqfa2, cut=.25)
+```
+
+    ## Factor Analysis using method =  minres
+    ## Call: fa(r = items_mmqn[, c(2:5, 7:13, 15:18, 20, 22:30, 32:33)], nfactors = 6, 
+    ##     cor = "poly")
+    ## Standardized loadings (pattern matrix) based upon correlation matrix
+    ##              MR1   MR2   MR5   MR3   MR4   MR6   h2   u2 com
+    ## q0007_0002              0.58                   0.30 0.70 1.1
+    ## q0007_0003              0.82                   0.75 0.25 1.0
+    ## q0007_0004                          0.78       0.67 0.33 1.0
+    ## q0007_0005                          0.82       0.66 0.34 1.1
+    ## q0007_0007              0.76                   0.71 0.29 1.0
+    ## q0007_0008        0.53                         0.40 0.60 1.6
+    ## q0007_0009 -0.25                          0.38 0.36 0.64 2.4
+    ## q0007_0010        0.67                         0.55 0.45 1.3
+    ## q0007_0011  0.54                               0.47 0.53 1.4
+    ## q0007_0012                                0.56 0.53 0.47 1.4
+    ## q0007_0013                    0.80             0.69 0.31 1.1
+    ## q0007_0015                    0.33             0.28 0.72 2.2
+    ## q0007_0016        0.83                         0.75 0.25 1.1
+    ## q0007_0017        0.73                         0.61 0.39 1.1
+    ## q0007_0018        0.66                         0.46 0.54 1.1
+    ## q0007_0020                    0.62             0.51 0.49 1.3
+    ## q0007_0022  0.60                               0.39 0.61 1.2
+    ## q0007_0023              0.58                   0.46 0.54 1.6
+    ## q0007_0024  0.79                               0.76 0.24 1.1
+    ## q0007_0025  0.87                               0.77 0.23 1.1
+    ## q0007_0026  0.57       -0.35                   0.60 0.40 1.7
+    ## q0007_0027                                0.57 0.54 0.46 1.4
+    ## q0007_0028                          0.68       0.53 0.47 1.1
+    ## q0007_0029                    0.79             0.62 0.38 1.1
+    ## q0007_0030  0.85                               0.82 0.18 1.1
+    ## q0007_0032        0.39                         0.26 0.74 1.7
+    ## q0007_0033              0.29              0.37 0.36 0.64 2.5
+    ## 
+    ##                        MR1  MR2  MR5  MR3  MR4  MR6
+    ## SS loadings           3.71 2.76 2.58 2.20 1.96 1.58
+    ## Proportion Var        0.14 0.10 0.10 0.08 0.07 0.06
+    ## Cumulative Var        0.14 0.24 0.34 0.42 0.49 0.55
+    ## Proportion Explained  0.25 0.19 0.17 0.15 0.13 0.11
+    ## Cumulative Proportion 0.25 0.44 0.61 0.76 0.89 1.00
+    ## 
+    ##  With factor correlations of 
+    ##       MR1   MR2   MR5   MR3   MR4   MR6
+    ## MR1  1.00  0.27 -0.39 -0.19  0.23 -0.32
+    ## MR2  0.27  1.00  0.13  0.12  0.34 -0.01
+    ## MR5 -0.39  0.13  1.00  0.29  0.19  0.33
+    ## MR3 -0.19  0.12  0.29  1.00 -0.05  0.35
+    ## MR4  0.23  0.34  0.19 -0.05  1.00  0.03
+    ## MR6 -0.32 -0.01  0.33  0.35  0.03  1.00
+    ## 
+    ## Mean item complexity =  1.4
+    ## Test of the hypothesis that 6 factors are sufficient.
+    ## 
+    ## The degrees of freedom for the null model are  351  and the objective function was  14.56 with Chi Square of  5986.8
+    ## The degrees of freedom for the model are 204  and the objective function was  2.1 
+    ## 
+    ## The root mean square of the residuals (RMSR) is  0.03 
+    ## The df corrected root mean square of the residuals is  0.04 
+    ## 
+    ## The harmonic number of observations is  367 with the empirical chi square  282.56  with prob <  0.00022 
+    ## The total number of observations was  422  with Likelihood Chi Square =  853.23  with prob <  3.2e-80 
+    ## 
+    ## Tucker Lewis Index of factoring reliability =  0.8
+    ## RMSEA index =  0.087  and the 90 % confidence intervals are  0.081 0.093
+    ## BIC =  -379.95
+    ## Fit based upon off diagonal values = 0.99
+    ## Measures of factor score adequacy             
+    ##                                                    MR1  MR2  MR5  MR3  MR4  MR6
+    ## Correlation of (regression) scores with factors   0.96 0.94 0.94 0.92 0.92 0.86
+    ## Multiple R square of scores with factors          0.93 0.88 0.88 0.84 0.84 0.74
+    ## Minimum correlation of possible factor scores     0.85 0.77 0.75 0.68 0.68 0.47
+
 ### Descripción y depuración del MentS:
 
 El instrumento cuenta con 3 factores (motivation, self y others), y
@@ -591,7 +1044,7 @@ items_ments %>% gather(key=item, value = respuesta) %>% mutate(respuesta = facto
     ## Warning: attributes are not identical across measure variables;
     ## they will be dropped
 
-![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 Ahora hay que reversal los ítems en negativo:
 
@@ -615,13 +1068,13 @@ library(corrplot)
 corrplot(cor(ments),order="hclust",addrect =3)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 ``` r
 fa.parallel(ments)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
     ## Parallel analysis suggests that the number of factors =  5  and the number of components =  4
 
@@ -825,6 +1278,46 @@ A nivel central, refiere a la percepción del grado de claridad/confusión
 que tiene una persona respecto a sus propios pensamientos, emociones y
 acciones.
 
+## Consistencia interna:
+
+## Motivation:
+
+1,4,7,9,13,15,16,17,24,27
+
+``` r
+a=alpha(ments[,c(1,4,7,9,13,15,17,24,27,28,2)])
+a$total
+```
+
+    ##  raw_alpha std.alpha   G6(smc) average_r      S/N        ase     mean        sd
+    ##   0.769344 0.7769048 0.7778339  0.240457 3.482392 0.01801957 4.221264 0.4218382
+    ##   median_r
+    ##  0.2362768
+
+## others:
+
+``` r
+a=alpha(ments[,c(3, 5, 6, 10, 12, 20, 23,2,25,28)])
+a$total
+```
+
+    ##  raw_alpha std.alpha   G6(smc) average_r      S/N        ase     mean        sd
+    ##  0.7357184 0.7436326 0.7463221 0.2248454 2.900653 0.02066507 3.906609 0.4238386
+    ##   median_r
+    ##  0.2325708
+
+## Self
+
+``` r
+a=alpha(ments[,c(8, 11, 14, 18, 19, 21, 22,25)])
+a$total
+```
+
+    ##  raw_alpha std.alpha   G6(smc) average_r      S/N        ase     mean        sd
+    ##  0.8249203 0.8231434 0.8271214 0.3678037 4.654297 0.01394449 3.443966 0.7581233
+    ##   median_r
+    ##  0.3511543
+
 # Relación con otras variables:
 
 ### EQ:
@@ -861,7 +1354,7 @@ naniar::miss_var_summary(items_eq)
 vis_miss(items_eq)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 ``` r
 items_eq=items_eq %>% mutate(across(.cols = everything(), .fns = function(x){
@@ -909,7 +1402,7 @@ naniar::miss_var_summary(items_iri)
 vis_miss(items_iri)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
 
 Reversar ítems:
 
@@ -921,7 +1414,7 @@ items_iri = items_iri %>% mutate(across(.cols = c(3,4,7,12,13,14,15,18,19), .fns
 corrplot(cor(items_iri,use="complete.obs"), order = "hclust", addrect = 4)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-38-1.png)<!-- -->
 
 ``` r
 items_iri$fs = rowSums(items_iri[,c(1,5,7,12,16,20,26)])
@@ -973,7 +1466,7 @@ naniar::miss_var_summary(items_aq)
 vis_miss(items_aq)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-40-1.png)<!-- -->
 
 ``` r
 items_aq$af = rowSums(items_aq[,c(1,5,9,17,21,27,29)])
@@ -1015,1710 +1508,118 @@ datos_fa$suma_aq_r = items_aq$ang
 datos_fa$suma_aq_h = items_aq$host
 ```
 
-## MMQ:
-
-El instrumento cuenta con 6 subescalas, compuestas de la siguiente
-manera:
-
-**Escalas positivas:**
-
-F1 (reflexión): 1,6,8,10,16,17,18,31,32
-
-F2 (ego-strength): 11,22,24,25,26,30
-
-F3 (relational attunement): 4,5,14,21,28
-
-**Escalas negativas:**
-
-F4 (relational discomfort): 9,12,15,27,33
-
-F5 (distrust): 13,19,20,29
-
-F6 (emotional discontrol):2,3,7,23
-
-### Escalas con complicaciones:
-
-Las variables más complicadas son:
-
-Relational Attunement: originalmente ítems 4,5,14,21,28; propuesta:
-4,5,28. Ítem 14 y 21 asociados a relational discomfort. Hipótesis es
-predominancia de empatía cognitiva, y los ítems más afectivos podrían
-tener que ver con relaciones sociales concretas.
-
-Relational Discomfort: originalmente ítems 9,12,15,27,33; propuesta:
-9,12,27,33 6,14,21,31. Hipótesis es predominancia de ítems sobre empatía
-emocional.
-
-### Relational Attunement:
-
-Model1 (original)
+## Nuevas versiones de las escalas:
 
 ``` r
-library(lavaan)
+mmq_refN = rowMeans(items_mmqn[,c(8,10,16,17,18,32)])
+mmq_egoN = rowMeans(items_mmqn[,c(11,22,24,25,26,30)])
+mmq_attunN = rowMeans(items_mmqn[,c(4,5,28)])
+mmq_reldisN = rowMeans(items_mmqn[,c(9,12,27,33)])
+mmq_distN = rowMeans(items_mmqn[,c(13,15,20,29)])
+mmq_emdisN = rowMeans(items_mmqn[,c(2,3,7,23)])
+
+
+
+ments = datos[,50:77]
+
+ments_motN = rowMeans(ments[,c(1,4,7,9,13,15,17,24,27,2,28)])
+ments_otrN = rowMeans(ments[,c(3,5,6,10,12,20,23)])
+ments_selfN = rowMeans(ments[,c(25,8,11,14,18,19,21,22)])
 ```
 
-    ## This is lavaan 0.6-10
-    ## lavaan is FREE software! Please report any bugs.
-
-    ## 
-    ## Attaching package: 'lavaan'
-
-    ## The following object is masked from 'package:psych':
-    ## 
-    ##     cor2cov
+## Base para correlaciones con escalas nuevas MMQ
 
 ``` r
-#f_ra1~~suma_aq_af
-#f_ra1~~suma_aq_av
-#f_ra1~~suma_aq_r
-#f_ra1~~suma_aq_h
-#f_ra1~~suma_eq_hs
-#f_ra1~~suma_eq_re
-#f_ra1~~suma_iri_fs
-#f_ra1~~suma_iri_pd
-#f_ra1~~suma_iri_pt
+eq_ec = items_eq$eq_ec
+eq_hs = items_eq$eq_hs
+eq_re = items_eq$eq_re 
 
+## iri: 
 
-cod_ra_cov1 = "f_ra1 =~ q0007_0004+q0007_0005+q0007_0028+q0007_0014+q0007_0021
-f_ra1~~suma_eq_ec
-f_ra1~~suma_iri_ec
-"
+iri_fs = items_iri$fs
+iri_pd = items_iri$pd
+iri_pt = items_iri$pt 
+iri_ec = items_iri$ec
 
-# ordered = names(datos_fa[,17:77]) agregar en caso de:
+## BPAQ:
 
-mod_ra_cov1 = sem(model=cod_ra_cov1, data = datos_fa, estimator = "MLR")
+aq_af = items_aq$af
+aq_av = items_aq$av
+aq_r = items_aq$ang
+aq_h = items_aq$host
 
-summary(mod_ra_cov1, fit.measures = T, standardized = TRUE)
+mmqN_conc = data.frame(cbind(mmq_refN,mmq_egoN,mmq_attunN,mmq_reldisN,mmq_distN,mmq_emdisN,eq_ec,eq_hs,eq_re,iri_fs,iri_pd,iri_pt,iri_ec,aq_af,aq_av,aq_r,aq_h))
 ```
 
-    ## lavaan 0.6-10 ended normally after 36 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        14
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                146.426     105.721
-    ##   Degrees of freedom                                 14          14
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.385
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               626.530     423.309
-    ##   Degrees of freedom                                21          21
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.480
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.781       0.772
-    ##   Tucker-Lewis Index (TLI)                       0.672       0.658
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.787
-    ##   Robust Tucker-Lewis Index (TLI)                            0.680
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -3267.730   -3267.730
-    ##   Scaling correction factor                                  1.550
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.467
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                6563.460    6563.460
-    ##   Bayesian (BIC)                              6615.173    6615.173
-    ##   Sample-size adjusted Bayesian (BIC)         6570.774    6570.774
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.178       0.149
-    ##   90 Percent confidence interval - lower         0.153       0.127
-    ##   90 Percent confidence interval - upper         0.205       0.171
-    ##   P-value RMSEA <= 0.05                          0.000       0.000
-    ##                                                                   
-    ##   Robust RMSEA                                               0.175
-    ##   90 Percent confidence interval - lower                     0.145
-    ##   90 Percent confidence interval - upper                     0.207
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.119       0.119
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ra1 =~                                                              
-    ##     q0007_0004        1.000                               0.484    0.618
-    ##     q0007_0005        1.049    0.111    9.430    0.000    0.508    0.611
-    ##     q0007_0028        0.872    0.096    9.102    0.000    0.422    0.632
-    ##     q0007_0014        0.660    0.125    5.282    0.000    0.319    0.549
-    ##     q0007_0021        0.819    0.211    3.889    0.000    0.396    0.492
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ra1 ~~                                                              
-    ##     suma_eq_ec        1.878    0.369    5.089    0.000    3.882    0.686
-    ##     suma_iri_ec       0.949    0.217    4.376    0.000    1.961    0.385
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0004        0.378    0.054    7.000    0.000    0.378    0.618
-    ##    .q0007_0005        0.432    0.057    7.646    0.000    0.432    0.627
-    ##    .q0007_0028        0.268    0.038    7.040    0.000    0.268    0.601
-    ##    .q0007_0014        0.236    0.032    7.328    0.000    0.236    0.698
-    ##    .q0007_0021        0.493    0.064    7.699    0.000    0.493    0.758
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     f_ra1             0.234    0.059    3.982    0.000    1.000    1.000
-
-Model2:
+## Base para correlaciones con escalas nuevas MentS:
 
 ``` r
-cod_ra_cov2 = "f_ra1 =~ q0007_0004+q0007_0005+q0007_0028
-f_ra1~~suma_eq_ec
-f_ra1~~suma_iri_ec"
-
-# ordered = names(datos_fa[,17:77]) agregar en caso de:
-
-mod_ra_cov2 = sem(model=cod_ra_cov2, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_ra_cov2, fit.measures = T, standardized = TRUE)
+mentsN_conc = data.frame(cbind(ments_motN,ments_otrN,ments_selfN,eq_ec,eq_hs,eq_re,iri_fs,iri_pd,iri_pt,iri_ec,aq_af,aq_av,aq_r,aq_h))
 ```
 
-    ## lavaan 0.6-10 ended normally after 34 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        10
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 28.995      19.152
-    ##   Degrees of freedom                                  5           5
-    ##   P-value (Chi-square)                            0.000       0.002
-    ##   Scaling correction factor                                   1.514
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               375.475     260.468
-    ##   Degrees of freedom                                10          10
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.442
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.934       0.943
-    ##   Tucker-Lewis Index (TLI)                       0.869       0.887
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.941
-    ##   Robust Tucker-Lewis Index (TLI)                            0.881
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -2706.323   -2706.323
-    ##   Scaling correction factor                                  1.285
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.361
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                5432.647    5432.647
-    ##   Bayesian (BIC)                              5469.584    5469.584
-    ##   Sample-size adjusted Bayesian (BIC)         5437.871    5437.871
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.127       0.098
-    ##   90 Percent confidence interval - lower         0.085       0.062
-    ##   90 Percent confidence interval - upper         0.174       0.136
-    ##   P-value RMSEA <= 0.05                          0.002       0.017
-    ##                                                                   
-    ##   Robust RMSEA                                               0.120
-    ##   90 Percent confidence interval - lower                     0.066
-    ##   90 Percent confidence interval - upper                     0.179
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.090       0.090
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ra1 =~                                                              
-    ##     q0007_0004        1.000                               0.552    0.697
-    ##     q0007_0005        1.008    0.096   10.549    0.000    0.556    0.661
-    ##     q0007_0028        0.849    0.098    8.628    0.000    0.468    0.692
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ra1 ~~                                                              
-    ##     suma_eq_ec        2.224    0.289    7.684    0.000    4.033    0.713
-    ##     suma_iri_ec       0.445    0.151    2.952    0.003    0.807    0.158
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0004        0.322    0.042    7.603    0.000    0.322    0.514
-    ##    .q0007_0005        0.398    0.064    6.236    0.000    0.398    0.563
-    ##    .q0007_0028        0.238    0.030    7.911    0.000    0.238    0.521
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     f_ra1             0.304    0.051    5.966    0.000    1.000    1.000
-
-Conclusión: los ítems 14 y 21 tienen un efecto en el factor que lo hace
-tener más que ver con la vinculación emocional (relación con EC), y
-disminuye levemente su asociación con la empatía cognitiva. El ajuste
-general del modelo disminuye. Se propone que estos ítems podrían no
-pertenecer al mismo constructo.
-
-### Relational discomfort:
-
-Model1: (original)
+## Escalas antiguas:
 
 ``` r
-cod_rd_cov1 = "f_rd1 =~ q0007_0009+q0007_0012+q0007_0015+q0007_0027+q0007_0033
-f_rd1~~suma_eq_ec
-f_rd1~~suma_iri_ec
-f_rd1~~suma_aq_h"
+mmq_refO = rowMeans(items_mmqn[,c(1,6,8,10,16,17,18,31,32)])
+mmq_egoO = rowMeans(items_mmqn[,c(11,22,24,25,26,30)])
+mmq_attunO = rowMeans(items_mmqn[,c(4,5,14,21,28)])
+mmq_reldisO = rowMeans(items_mmqn[,c(9,12,15,27,33)])
+mmq_distO = rowMeans(items_mmqn[,c(13,15,19,20,29)])
+mmq_emdisO = rowMeans(items_mmqn[,c(2,3,7,23)])
 
-# ordered = names(datos_fa[,17:77]) agregar en caso de:
 
-mod_rd_cov1 = sem(model=cod_rd_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_rd_cov1, fit.measures = T, standardized = TRUE)
+ments_motO = rowMeans(ments[,c(1,4,7,9,13,15,16,17,24,27)])
+ments_otrO = rowMeans(ments[,c(2,3,5,6,10,12,20,23,25,28)])
+ments_selfO = rowMeans(ments[,c(8,11,14,18,19,21,22,26)])
 ```
-
-    ## lavaan 0.6-10 ended normally after 37 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        16
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           290         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 57.884      48.731
-    ##   Degrees of freedom                                 20          20
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.188
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               451.496     383.499
-    ##   Degrees of freedom                                28          28
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.177
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.911       0.919
-    ##   Tucker-Lewis Index (TLI)                       0.875       0.887
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.918
-    ##   Robust Tucker-Lewis Index (TLI)                            0.886
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -4521.504   -4521.504
-    ##   Scaling correction factor                                  1.072
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.136
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                9075.009    9075.009
-    ##   Bayesian (BIC)                              9133.727    9133.727
-    ##   Sample-size adjusted Bayesian (BIC)         9082.988    9082.988
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.081       0.070
-    ##   90 Percent confidence interval - lower         0.057       0.048
-    ##   90 Percent confidence interval - upper         0.106       0.094
-    ##   P-value RMSEA <= 0.05                          0.019       0.069
-    ##                                                                   
-    ##   Robust RMSEA                                               0.077
-    ##   90 Percent confidence interval - lower                     0.050
-    ##   90 Percent confidence interval - upper                     0.104
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.077       0.077
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rd1 =~                                                              
-    ##     q0007_0009        1.000                               0.578    0.579
-    ##     q0007_0012        1.095    0.146    7.516    0.000    0.633    0.660
-    ##     q0007_0015        0.906    0.162    5.599    0.000    0.524    0.444
-    ##     q0007_0027        1.201    0.148    8.117    0.000    0.694    0.652
-    ##     q0007_0033        1.024    0.152    6.742    0.000    0.592    0.550
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rd1 ~~                                                              
-    ##     suma_eq_ec       -0.155    0.190   -0.816    0.415   -0.268   -0.047
-    ##     suma_iri_ec       0.032    0.161    0.197    0.844    0.055    0.011
-    ##     suma_aq_h         1.566    0.257    6.095    0.000    2.709    0.751
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0009        0.661    0.073    9.039    0.000    0.661    0.664
-    ##    .q0007_0012        0.520    0.061    8.470    0.000    0.520    0.565
-    ##    .q0007_0015        1.116    0.097   11.496    0.000    1.116    0.803
-    ##    .q0007_0027        0.652    0.069    9.475    0.000    0.652    0.575
-    ##    .q0007_0033        0.809    0.071   11.469    0.000    0.809    0.697
-    ##     suma_eq_ec       32.559    2.919   11.154    0.000   32.559    1.000
-    ##     suma_iri_ec      25.911    2.728    9.497    0.000   25.911    1.000
-    ##     suma_aq_h        13.007    1.165   11.165    0.000   13.007    1.000
-    ##     f_rd1             0.334    0.076    4.415    0.000    1.000    1.000
-
-Model2: (propuesta)
 
 ``` r
-datos_fa$q0007_0006r = 6 - datos_fa$q0007_0006
-datos_fa$q0007_0014r = 6 - datos_fa$q0007_0014
-datos_fa$q0007_0021r = 6 - datos_fa$q0007_0021
-datos_fa$q0007_0031r = 6 - datos_fa$q0007_0031
-
-
-cod_rd_cov2 = "f_rd1 =~ q0007_0009+q0007_0012+q0007_0027+q0007_0033+q0007_0006r+q0007_0014r+q0007_0021r+q0007_0031r
-f_rd1~~suma_eq_ec
-f_rd1~~suma_iri_ec
-f_rd1~~suma_aq_h"
-
-# ordered = names(datos_fa[,17:77]) agregar en caso de:
-
-mod_rd_cov2 = sem(model=cod_rd_cov2, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_rd_cov2, fit.measures = T, standardized = TRUE)
+mmqO_conc = data.frame(cbind(mmq_refO,mmq_egoO,mmq_attunO,mmq_reldisO,mmq_distO,mmq_emdisO,eq_ec,eq_hs,eq_re,iri_fs,iri_pd,iri_pt,iri_ec,aq_af,aq_av,aq_r,aq_h))
 ```
 
-    ## lavaan 0.6-10 ended normally after 51 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        22
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           290         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                391.043     379.388
-    ##   Degrees of freedom                                 44          44
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.031
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               805.840     641.055
-    ##   Degrees of freedom                                55          55
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.257
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.538       0.428
-    ##   Tucker-Lewis Index (TLI)                       0.422       0.285
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.531
-    ##   Robust Tucker-Lewis Index (TLI)                            0.413
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -5266.717   -5266.717
-    ##   Scaling correction factor                                  1.813
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.292
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                               10577.433   10577.433
-    ##   Bayesian (BIC)                             10658.170   10658.170
-    ##   Sample-size adjusted Bayesian (BIC)        10588.404   10588.404
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.165       0.162
-    ##   90 Percent confidence interval - lower         0.150       0.148
-    ##   90 Percent confidence interval - upper         0.180       0.177
-    ##   P-value RMSEA <= 0.05                          0.000       0.000
-    ##                                                                   
-    ##   Robust RMSEA                                               0.165
-    ##   90 Percent confidence interval - lower                     0.150
-    ##   90 Percent confidence interval - upper                     0.180
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.155       0.155
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rd1 =~                                                              
-    ##     q0007_0009        1.000                               0.296    0.298
-    ##     q0007_0012        0.986    0.220    4.478    0.000    0.292    0.306
-    ##     q0007_0027        0.974    0.206    4.737    0.000    0.288    0.272
-    ##     q0007_0033        0.789    0.269    2.938    0.003    0.233    0.218
-    ##     q0007_0006r       0.592    0.370    1.598    0.110    0.175    0.251
-    ##     q0007_0014r       1.161    0.709    1.638    0.101    0.343    0.597
-    ##     q0007_0021r       1.707    1.125    1.517    0.129    0.505    0.640
-    ##     q0007_0031r       1.226    0.826    1.485    0.138    0.363    0.565
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rd1 ~~                                                              
-    ##     suma_eq_ec       -0.510    0.273   -1.869    0.062   -1.725   -0.302
-    ##     suma_iri_ec      -0.993    0.394   -2.521    0.012   -3.357   -0.660
-    ##     suma_aq_h         0.336    0.421    0.798    0.425    1.137    0.315
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0009        0.894    0.110    8.139    0.000    0.894    0.911
-    ##    .q0007_0012        0.823    0.114    7.242    0.000    0.823    0.906
-    ##    .q0007_0027        1.039    0.121    8.555    0.000    1.039    0.926
-    ##    .q0007_0033        1.098    0.104   10.560    0.000    1.098    0.953
-    ##    .q0007_0006r       0.454    0.072    6.302    0.000    0.454    0.937
-    ##    .q0007_0014r       0.213    0.036    5.940    0.000    0.213    0.644
-    ##    .q0007_0021r       0.368    0.093    3.952    0.000    0.368    0.590
-    ##    .q0007_0031r       0.281    0.054    5.191    0.000    0.281    0.681
-    ##     suma_eq_ec       32.558    2.919   11.154    0.000   32.558    1.000
-    ##     suma_iri_ec      25.911    2.728    9.497    0.000   25.911    1.000
-    ##     suma_aq_h        13.007    1.165   11.165    0.000   13.007    1.000
-    ##     f_rd1             0.087    0.087    1.009    0.313    1.000    1.000
-
-Conclusión: los ítems que se agregan no contribuyen a definir el factor.
-La propuesta es dejar la hostilidad como criterio y mantener la escala
-original.
-
-### Reflexibility:
-
-Modelo 1: escala original: 1,6,8,10,16,17,18,31,32
+## Base para correlaciones con escalas nuevas MentS:
 
 ``` r
-cod_rf_cov1 = "f_rf1 =~ q0007_0001+q0007_0006+q0007_0008+q0007_0010+q0007_0016+q0007_0017+q0007_0018+q0007_0031+
-q0007_0032
-f_rf1~~suma_eq_ec
-f_rf1~~suma_iri_ec
-f_rf1~~suma_iri_pt"
-
-# ordered = names(datos_fa[,17:77]) agregar en caso de:
-
-mod_rf_cov1 = sem(model=cod_rf_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_rf_cov1, fit.measures = T, standardized = TRUE)
+mentsO_conc = data.frame(cbind(ments_motO,ments_otrO,ments_selfO,eq_ec,eq_hs,eq_re,iri_fs,iri_pd,iri_pt,iri_ec,aq_af,aq_av,aq_r,aq_h))
 ```
 
-    ## lavaan 0.6-10 ended normally after 42 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        24
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                259.958     213.740
-    ##   Degrees of freedom                                 54          54
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.216
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               657.395     500.748
-    ##   Degrees of freedom                                66          66
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.313
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.652       0.633
-    ##   Tucker-Lewis Index (TLI)                       0.574       0.551
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.660
-    ##   Robust Tucker-Lewis Index (TLI)                            0.584
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -5435.763   -5435.763
-    ##   Scaling correction factor                                  1.922
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.434
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                               10919.527   10919.527
-    ##   Bayesian (BIC)                             11008.176   11008.176
-    ##   Sample-size adjusted Bayesian (BIC)        10932.064   10932.064
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.113       0.100
-    ##   90 Percent confidence interval - lower         0.100       0.087
-    ##   90 Percent confidence interval - upper         0.127       0.113
-    ##   P-value RMSEA <= 0.05                          0.000       0.000
-    ##                                                                   
-    ##   Robust RMSEA                                               0.110
-    ##   90 Percent confidence interval - lower                     0.095
-    ##   90 Percent confidence interval - upper                     0.126
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.105       0.105
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rf1 =~                                                              
-    ##     q0007_0001        1.000                               0.316    0.309
-    ##     q0007_0006        0.562    0.270    2.077    0.038    0.178    0.256
-    ##     q0007_0008        0.903    0.219    4.117    0.000    0.286    0.471
-    ##     q0007_0010        1.007    0.296    3.403    0.001    0.319    0.546
-    ##     q0007_0016        1.323    0.289    4.571    0.000    0.419    0.688
-    ##     q0007_0017        1.250    0.303    4.123    0.000    0.396    0.637
-    ##     q0007_0018        1.327    0.398    3.335    0.001    0.420    0.492
-    ##     q0007_0031        0.757    0.249    3.036    0.002    0.240    0.363
-    ##     q0007_0032        0.961    0.307    3.132    0.002    0.304    0.340
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rf1 ~~                                                              
-    ##     suma_eq_ec        0.458    0.175    2.619    0.009    1.447    0.256
-    ##     suma_iri_ec       0.312    0.152    2.048    0.041    0.986    0.193
-    ##     suma_iri_pt       0.274    0.120    2.289    0.022    0.867    0.186
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0001        0.949    0.097    9.819    0.000    0.949    0.905
-    ##    .q0007_0006        0.452    0.067    6.767    0.000    0.452    0.935
-    ##    .q0007_0008        0.287    0.050    5.694    0.000    0.287    0.779
-    ##    .q0007_0010        0.239    0.052    4.564    0.000    0.239    0.702
-    ##    .q0007_0016        0.195    0.038    5.120    0.000    0.195    0.527
-    ##    .q0007_0017        0.229    0.056    4.084    0.000    0.229    0.594
-    ##    .q0007_0018        0.553    0.062    8.955    0.000    0.553    0.758
-    ##    .q0007_0031        0.378    0.038   10.006    0.000    0.378    0.868
-    ##    .q0007_0032        0.706    0.078    9.047    0.000    0.706    0.884
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     suma_iri_pt      21.812    2.149   10.151    0.000   21.812    1.000
-    ##     f_rf1             0.100    0.048    2.080    0.038    1.000    1.000
-
-Modelo 2: escala propuesta
+## Correlaciones MMQ nuevo
 
 ``` r
-cod_rf_cov2 = "f_rf1 =~ q0007_0001+q0007_0008+q0007_0010+q0007_0016+q0007_0017+q0007_0018+
-q0007_0032
-f_rf1~~suma_eq_ec
-f_rf1~~suma_iri_ec
-f_rf1~~suma_iri_pt"
-
-# ordered = names(datos_fa[,17:77]) agregar en caso de:
-
-mod_rf_cov2 = sem(model=cod_rf_cov2, data = datos_fa, estimator = "MLR")
-
-summary(mod_rf_cov2, fit.measures = T, standardized = TRUE)
+corrplot(cor(mmqN_conc, use="complete.obs"), method = "number")
 ```
 
-    ## lavaan 0.6-10 ended normally after 39 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        20
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                174.391     155.075
-    ##   Degrees of freedom                                 35          35
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.125
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               526.032     402.822
-    ##   Degrees of freedom                                45          45
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.306
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.710       0.664
-    ##   Tucker-Lewis Index (TLI)                       0.627       0.569
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.711
-    ##   Robust Tucker-Lewis Index (TLI)                            0.628
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -4845.146   -4845.146
-    ##   Scaling correction factor                                  1.997
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.442
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                9730.292    9730.292
-    ##   Bayesian (BIC)                              9804.167    9804.167
-    ##   Sample-size adjusted Bayesian (BIC)         9740.740    9740.740
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.116       0.107
-    ##   90 Percent confidence interval - lower         0.099       0.091
-    ##   90 Percent confidence interval - upper         0.133       0.124
-    ##   P-value RMSEA <= 0.05                          0.000       0.000
-    ##                                                                   
-    ##   Robust RMSEA                                               0.114
-    ##   90 Percent confidence interval - lower                     0.096
-    ##   90 Percent confidence interval - upper                     0.133
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.100       0.100
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rf1 =~                                                              
-    ##     q0007_0001        1.000                               0.324    0.316
-    ##     q0007_0008        0.948    0.237    4.007    0.000    0.307    0.505
-    ##     q0007_0010        0.982    0.286    3.437    0.001    0.318    0.543
-    ##     q0007_0016        1.395    0.300    4.646    0.000    0.451    0.739
-    ##     q0007_0017        1.246    0.295    4.222    0.000    0.403    0.646
-    ##     q0007_0018        1.264    0.372    3.397    0.001    0.409    0.478
-    ##     q0007_0032        0.856    0.277    3.086    0.002    0.277    0.309
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_rf1 ~~                                                              
-    ##     suma_eq_ec        0.415    0.166    2.494    0.013    1.283    0.227
-    ##     suma_iri_ec       0.211    0.143    1.478    0.139    0.653    0.128
-    ##     suma_iri_pt       0.267    0.120    2.226    0.026    0.826    0.177
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0001        0.947    0.096    9.872    0.000    0.947    0.900
-    ##    .q0007_0008        0.276    0.054    5.128    0.000    0.276    0.745
-    ##    .q0007_0010        0.242    0.055    4.396    0.000    0.242    0.706
-    ##    .q0007_0016        0.170    0.040    4.280    0.000    0.170    0.454
-    ##    .q0007_0017        0.226    0.061    3.694    0.000    0.226    0.582
-    ##    .q0007_0018        0.566    0.068    8.343    0.000    0.566    0.772
-    ##    .q0007_0032        0.725    0.080    9.113    0.000    0.725    0.904
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     suma_iri_pt      21.812    2.149   10.151    0.000   21.812    1.000
-    ##     f_rf1             0.105    0.047    2.214    0.027    1.000    1.000
+![](README_files/figure-gfm/unnamed-chunk-49-1.png)<!-- -->
 
-### Propuesta del nuevo factor (Empatic concern):
-
-Se propone un factor de empatic concern in close relationships con los
-siguientes ítems.
-
-6.- Para entender las acciones de los demás, es fundamental comprender
-lo que sienten.
-
-14.- Soy capaz de empatizar con otros cuando me cuentan algo.
-
-21.- Soy sensible a lo que le pasa a los demás.
-
-31.- Soy una persona que piensa en los demás.
+## Correlaciones MentS nuevo
 
 ``` r
-cod_ec_cov1 = "f_ec1 =~ q0007_0006+q0007_0014+q0007_0021+q0007_0031
-f_ec1~~suma_eq_ec
-f_ec1~~suma_iri_ec"
-
-mod_ec_cov1 = sem(model=cod_ec_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_ec_cov1, fit.measures = T, standardized = TRUE)
+corrplot(cor(mentsN_conc, use="complete.obs"), method = "number")
 ```
 
-    ## lavaan 0.6-10 ended normally after 36 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        12
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 31.615      18.645
-    ##   Degrees of freedom                                  9           9
-    ##   P-value (Chi-square)                            0.000       0.028
-    ##   Scaling correction factor                                   1.696
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               393.504     232.529
-    ##   Degrees of freedom                                15          15
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.692
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.940       0.956
-    ##   Tucker-Lewis Index (TLI)                       0.900       0.926
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.956
-    ##   Robust Tucker-Lewis Index (TLI)                            0.926
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -2901.995   -2901.995
-    ##   Scaling correction factor                                  1.792
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.751
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                5827.990    5827.990
-    ##   Bayesian (BIC)                              5872.315    5872.315
-    ##   Sample-size adjusted Bayesian (BIC)         5834.259    5834.259
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.092       0.060
-    ##   90 Percent confidence interval - lower         0.058       0.030
-    ##   90 Percent confidence interval - upper         0.128       0.090
-    ##   P-value RMSEA <= 0.05                          0.022       0.260
-    ##                                                                   
-    ##   Robust RMSEA                                               0.078
-    ##   90 Percent confidence interval - lower                     0.024
-    ##   90 Percent confidence interval - upper                     0.129
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.082       0.082
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 =~                                                              
-    ##     q0007_0006        1.000                               0.183    0.264
-    ##     q0007_0014        1.962    0.608    3.229    0.001    0.360    0.620
-    ##     q0007_0021        3.011    0.803    3.751    0.000    0.552    0.692
-    ##     q0007_0031        2.203    0.582    3.786    0.000    0.404    0.622
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 ~~                                                              
-    ##     suma_eq_ec        0.332    0.113    2.926    0.003    1.809    0.320
-    ##     suma_iri_ec       0.668    0.201    3.314    0.001    3.642    0.715
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0006        0.448    0.070    6.406    0.000    0.448    0.930
-    ##    .q0007_0014        0.208    0.027    7.583    0.000    0.208    0.616
-    ##    .q0007_0021        0.331    0.041    8.058    0.000    0.331    0.521
-    ##    .q0007_0031        0.258    0.042    6.214    0.000    0.258    0.613
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     f_ec1             0.034    0.018    1.919    0.055    1.000    1.000
+![](README_files/figure-gfm/unnamed-chunk-50-1.png)<!-- -->
+
+## Correlaciones MMQ antiguo
 
 ``` r
-cod_ec_cov2 = "f_ec1 =~ q0007_0014+q0007_0021+q0007_0031
-f_ec1~~suma_eq_ec
-f_ec1~~suma_iri_ec"
-
-mod_ec_cov2 = sem(model=cod_ec_cov2, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_ec_cov2, fit.measures = T, standardized = TRUE)
+corrplot(cor(mmqO_conc, use="complete.obs"), method = "number")
 ```
 
-    ## lavaan 0.6-10 ended normally after 27 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        10
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 30.137      14.151
-    ##   Degrees of freedom                                  5           5
-    ##   P-value (Chi-square)                            0.000       0.015
-    ##   Scaling correction factor                                   2.130
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               372.877     192.178
-    ##   Degrees of freedom                                10          10
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.940
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.931       0.950
-    ##   Tucker-Lewis Index (TLI)                       0.861       0.900
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.945
-    ##   Robust Tucker-Lewis Index (TLI)                            0.890
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -2597.411   -2597.411
-    ##   Scaling correction factor                                  1.673
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.825
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                5214.823    5214.823
-    ##   Bayesian (BIC)                              5251.760    5251.760
-    ##   Sample-size adjusted Bayesian (BIC)         5220.047    5220.047
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.130       0.079
-    ##   90 Percent confidence interval - lower         0.088       0.046
-    ##   90 Percent confidence interval - upper         0.177       0.112
-    ##   P-value RMSEA <= 0.05                          0.001       0.070
-    ##                                                                   
-    ##   Robust RMSEA                                               0.115
-    ##   90 Percent confidence interval - lower                     0.046
-    ##   90 Percent confidence interval - upper                     0.187
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.095       0.095
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 =~                                                              
-    ##     q0007_0014        1.000                               0.361    0.622
-    ##     q0007_0021        1.533    0.228    6.719    0.000    0.554    0.694
-    ##     q0007_0031        1.112    0.214    5.206    0.000    0.402    0.619
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 ~~                                                              
-    ##     suma_eq_ec        0.650    0.175    3.712    0.000    1.800    0.318
-    ##     suma_iri_ec       1.315    0.265    4.971    0.000    3.643    0.715
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0014        0.206    0.027    7.647    0.000    0.206    0.613
-    ##    .q0007_0021        0.330    0.042    7.921    0.000    0.330    0.518
-    ##    .q0007_0031        0.260    0.042    6.188    0.000    0.260    0.617
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     f_ec1             0.130    0.029    4.550    0.000    1.000    1.000
+![](README_files/figure-gfm/unnamed-chunk-51-1.png)<!-- -->
 
-## Reflexibility:
+## Correlaciones MentS antiguo
 
 ``` r
-cod_ec_cov1 = "f_ec1 =~ q0007_0006+q0007_0014+q0007_0021+q0007_0031
-f_ec1~~suma_eq_ec
-f_ec1~~suma_iri_ec"
-
-mod_ec_cov1 = sem(model=cod_ec_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_ec_cov1, fit.measures = T, standardized = TRUE)
+corrplot(cor(mentsO_conc, use="complete.obs"), method = "number")
 ```
 
-    ## lavaan 0.6-10 ended normally after 36 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        12
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 31.615      18.645
-    ##   Degrees of freedom                                  9           9
-    ##   P-value (Chi-square)                            0.000       0.028
-    ##   Scaling correction factor                                   1.696
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               393.504     232.529
-    ##   Degrees of freedom                                15          15
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.692
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.940       0.956
-    ##   Tucker-Lewis Index (TLI)                       0.900       0.926
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.956
-    ##   Robust Tucker-Lewis Index (TLI)                            0.926
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -2901.995   -2901.995
-    ##   Scaling correction factor                                  1.792
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.751
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                5827.990    5827.990
-    ##   Bayesian (BIC)                              5872.315    5872.315
-    ##   Sample-size adjusted Bayesian (BIC)         5834.259    5834.259
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.092       0.060
-    ##   90 Percent confidence interval - lower         0.058       0.030
-    ##   90 Percent confidence interval - upper         0.128       0.090
-    ##   P-value RMSEA <= 0.05                          0.022       0.260
-    ##                                                                   
-    ##   Robust RMSEA                                               0.078
-    ##   90 Percent confidence interval - lower                     0.024
-    ##   90 Percent confidence interval - upper                     0.129
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.082       0.082
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 =~                                                              
-    ##     q0007_0006        1.000                               0.183    0.264
-    ##     q0007_0014        1.962    0.608    3.229    0.001    0.360    0.620
-    ##     q0007_0021        3.011    0.803    3.751    0.000    0.552    0.692
-    ##     q0007_0031        2.203    0.582    3.786    0.000    0.404    0.622
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 ~~                                                              
-    ##     suma_eq_ec        0.332    0.113    2.926    0.003    1.809    0.320
-    ##     suma_iri_ec       0.668    0.201    3.314    0.001    3.642    0.715
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0006        0.448    0.070    6.406    0.000    0.448    0.930
-    ##    .q0007_0014        0.208    0.027    7.583    0.000    0.208    0.616
-    ##    .q0007_0021        0.331    0.041    8.058    0.000    0.331    0.521
-    ##    .q0007_0031        0.258    0.042    6.214    0.000    0.258    0.613
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     f_ec1             0.034    0.018    1.919    0.055    1.000    1.000
+![](README_files/figure-gfm/unnamed-chunk-52-1.png)<!-- -->
 
 ``` r
-cod_ec_cov1 = "f_ec1 =~ q0007_0006+q0007_0014+q0007_0021+q0007_0031
-f_ec1~~suma_eq_ec
-f_ec1~~suma_iri_ec"
+pacman::p_load(ggfortify)
+mmqN_conc2 = na.omit(mmqN_conc)
+mmqN_comp = princomp(mmqN_conc2)
 
-mod_ec_cov1 = sem(model=cod_ec_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_ec_cov1, fit.measures = T, standardized = TRUE)
+autoplot(mmqN_comp, loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3)
 ```
-
-    ## lavaan 0.6-10 ended normally after 36 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        12
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 31.615      18.645
-    ##   Degrees of freedom                                  9           9
-    ##   P-value (Chi-square)                            0.000       0.028
-    ##   Scaling correction factor                                   1.696
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               393.504     232.529
-    ##   Degrees of freedom                                15          15
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.692
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.940       0.956
-    ##   Tucker-Lewis Index (TLI)                       0.900       0.926
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.956
-    ##   Robust Tucker-Lewis Index (TLI)                            0.926
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -2901.995   -2901.995
-    ##   Scaling correction factor                                  1.792
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.751
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                5827.990    5827.990
-    ##   Bayesian (BIC)                              5872.315    5872.315
-    ##   Sample-size adjusted Bayesian (BIC)         5834.259    5834.259
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.092       0.060
-    ##   90 Percent confidence interval - lower         0.058       0.030
-    ##   90 Percent confidence interval - upper         0.128       0.090
-    ##   P-value RMSEA <= 0.05                          0.022       0.260
-    ##                                                                   
-    ##   Robust RMSEA                                               0.078
-    ##   90 Percent confidence interval - lower                     0.024
-    ##   90 Percent confidence interval - upper                     0.129
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.082       0.082
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 =~                                                              
-    ##     q0007_0006        1.000                               0.183    0.264
-    ##     q0007_0014        1.962    0.608    3.229    0.001    0.360    0.620
-    ##     q0007_0021        3.011    0.803    3.751    0.000    0.552    0.692
-    ##     q0007_0031        2.203    0.582    3.786    0.000    0.404    0.622
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ec1 ~~                                                              
-    ##     suma_eq_ec        0.332    0.113    2.926    0.003    1.809    0.320
-    ##     suma_iri_ec       0.668    0.201    3.314    0.001    3.642    0.715
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0006        0.448    0.070    6.406    0.000    0.448    0.930
-    ##    .q0007_0014        0.208    0.027    7.583    0.000    0.208    0.616
-    ##    .q0007_0021        0.331    0.041    8.058    0.000    0.331    0.521
-    ##    .q0007_0031        0.258    0.042    6.214    0.000    0.258    0.613
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     f_ec1             0.034    0.018    1.919    0.055    1.000    1.000
-
-### F2 (ego-strength)
-
-Escala original: 11,22,24,25,26,30
-
-``` r
-cod_es_cov1 = "f_es1 =~ q0007_0011+q0007_0022+q0007_0024+q0007_0025+q0007_0026+q0007_0030
-f_es1~~suma_eq_ec
-f_es1~~suma_iri_ec
-f_es1~~suma_iri_pd"
-
-mod_es_cov1 = sem(model=cod_es_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_es_cov1, fit.measures = T, standardized = TRUE)
-```
-
-    ## lavaan 0.6-10 ended normally after 39 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        18
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           297         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 94.922      81.007
-    ##   Degrees of freedom                                 27          27
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.172
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               922.546     745.742
-    ##   Degrees of freedom                                36          36
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.237
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.923       0.924
-    ##   Tucker-Lewis Index (TLI)                       0.898       0.899
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.928
-    ##   Robust Tucker-Lewis Index (TLI)                            0.904
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -4564.830   -4564.830
-    ##   Scaling correction factor                                  1.367
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.250
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                9165.660    9165.660
-    ##   Bayesian (BIC)                              9232.147    9232.147
-    ##   Sample-size adjusted Bayesian (BIC)         9175.063    9175.063
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.092       0.082
-    ##   90 Percent confidence interval - lower         0.072       0.063
-    ##   90 Percent confidence interval - upper         0.112       0.101
-    ##   P-value RMSEA <= 0.05                          0.000       0.003
-    ##                                                                   
-    ##   Robust RMSEA                                               0.089
-    ##   90 Percent confidence interval - lower                     0.067
-    ##   90 Percent confidence interval - upper                     0.111
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.072       0.072
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_es1 =~                                                              
-    ##     q0007_0011        1.000                               0.512    0.581
-    ##     q0007_0022        0.943    0.108    8.748    0.000    0.483    0.547
-    ##     q0007_0024        1.120    0.140    7.995    0.000    0.574    0.788
-    ##     q0007_0025        1.467    0.161    9.135    0.000    0.752    0.813
-    ##     q0007_0026        1.211    0.169    7.178    0.000    0.621    0.684
-    ##     q0007_0030        1.021    0.121    8.461    0.000    0.523    0.786
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_es1 ~~                                                              
-    ##     suma_eq_ec        0.465    0.167    2.790    0.005    0.907    0.160
-    ##     suma_iri_ec       0.079    0.192    0.414    0.679    0.155    0.030
-    ##     suma_iri_pd      -1.628    0.286   -5.689    0.000   -3.176   -0.564
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0011        0.516    0.069    7.496    0.000    0.516    0.663
-    ##    .q0007_0022        0.548    0.054   10.106    0.000    0.548    0.701
-    ##    .q0007_0024        0.202    0.029    6.903    0.000    0.202    0.380
-    ##    .q0007_0025        0.290    0.039    7.523    0.000    0.290    0.339
-    ##    .q0007_0026        0.437    0.050    8.768    0.000    0.437    0.532
-    ##    .q0007_0030        0.170    0.020    8.677    0.000    0.170    0.383
-    ##     suma_eq_ec       32.000    2.863   11.178    0.000   32.000    1.000
-    ##     suma_iri_ec      25.977    2.657    9.777    0.000   25.977    1.000
-    ##     suma_iri_pd      31.716    2.692   11.783    0.000   31.716    1.000
-    ##     f_es1             0.263    0.063    4.155    0.000    1.000    1.000
-
-### F5 (distrust)
-
-Escala original: 13,19,20,29
-
-``` r
-cod_dt_cov1 = "f_dt1 =~ q0007_0013+q0007_0019+q0007_0020+q0007_0029
-f_dt1~~suma_iri_ec
-f_dt1~~suma_aq_h"
-
-# f_dt1~~suma_eq_ec
-
-mod_dt_cov1 = sem(model=cod_dt_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_dt_cov1, fit.measures = T, standardized = TRUE)
-```
-
-    ## lavaan 0.6-10 ended normally after 31 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        12
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           290         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 36.554      33.382
-    ##   Degrees of freedom                                  9           9
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.095
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               356.383     320.082
-    ##   Degrees of freedom                                15          15
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.113
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.919       0.920
-    ##   Tucker-Lewis Index (TLI)                       0.865       0.867
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.921
-    ##   Robust Tucker-Lewis Index (TLI)                            0.869
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -3188.667   -3188.667
-    ##   Scaling correction factor                                  1.111
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.104
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                6401.333    6401.333
-    ##   Bayesian (BIC)                              6445.372    6445.372
-    ##   Sample-size adjusted Bayesian (BIC)         6407.318    6407.318
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.103       0.097
-    ##   90 Percent confidence interval - lower         0.069       0.064
-    ##   90 Percent confidence interval - upper         0.139       0.131
-    ##   P-value RMSEA <= 0.05                          0.006       0.011
-    ##                                                                   
-    ##   Robust RMSEA                                               0.101
-    ##   90 Percent confidence interval - lower                     0.066
-    ##   90 Percent confidence interval - upper                     0.139
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.065       0.065
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_dt1 =~                                                              
-    ##     q0007_0013        1.000                               0.816    0.796
-    ##     q0007_0019        0.319    0.105    3.037    0.002    0.261    0.246
-    ##     q0007_0020        0.814    0.092    8.847    0.000    0.664    0.648
-    ##     q0007_0029        0.853    0.062   13.802    0.000    0.696    0.699
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_dt1 ~~                                                              
-    ##     suma_iri_ec      -0.623    0.283   -2.202    0.028   -0.764   -0.150
-    ##     suma_aq_h         1.591    0.213    7.454    0.000    1.950    0.541
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0013        0.384    0.058    6.655    0.000    0.384    0.366
-    ##    .q0007_0019        1.056    0.094   11.218    0.000    1.056    0.940
-    ##    .q0007_0020        0.609    0.071    8.559    0.000    0.609    0.580
-    ##    .q0007_0029        0.508    0.065    7.824    0.000    0.508    0.511
-    ##     suma_iri_ec      25.911    2.728    9.497    0.000   25.911    1.000
-    ##     suma_aq_h        13.007    1.165   11.165    0.000   13.007    1.000
-    ##     f_dt1             0.666    0.083    7.990    0.000    1.000    1.000
-
-Escala propuesta: 13,15,20,29
-
-``` r
-cod_dt_cov2 = "f_dt1 =~ q0007_0013+q0007_0015+q0007_0020+q0007_0029
-f_dt1~~suma_iri_ec
-f_dt1~~suma_aq_h"
-
-mod_dt_cov2 = sem(model=cod_dt_cov2, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_dt_cov2, fit.measures = T, standardized = TRUE)
-```
-
-    ## lavaan 0.6-10 ended normally after 31 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        12
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           290         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 37.750      34.891
-    ##   Degrees of freedom                                  9           9
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.082
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               398.817     361.985
-    ##   Degrees of freedom                                15          15
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.102
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.925       0.925
-    ##   Tucker-Lewis Index (TLI)                       0.875       0.876
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.927
-    ##   Robust Tucker-Lewis Index (TLI)                            0.878
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -3199.018   -3199.018
-    ##   Scaling correction factor                                  1.041
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.059
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                6422.036    6422.036
-    ##   Bayesian (BIC)                              6466.075    6466.075
-    ##   Sample-size adjusted Bayesian (BIC)         6428.021    6428.021
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.105       0.100
-    ##   90 Percent confidence interval - lower         0.072       0.067
-    ##   90 Percent confidence interval - upper         0.141       0.134
-    ##   P-value RMSEA <= 0.05                          0.004       0.007
-    ##                                                                   
-    ##   Robust RMSEA                                               0.104
-    ##   90 Percent confidence interval - lower                     0.069
-    ##   90 Percent confidence interval - upper                     0.141
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.063       0.063
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_dt1 =~                                                              
-    ##     q0007_0013        1.000                               0.802    0.782
-    ##     q0007_0015        0.689    0.097    7.128    0.000    0.552    0.469
-    ##     q0007_0020        0.839    0.085    9.881    0.000    0.673    0.656
-    ##     q0007_0029        0.873    0.061   14.299    0.000    0.700    0.702
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_dt1 ~~                                                              
-    ##     suma_iri_ec      -0.540    0.274   -1.967    0.049   -0.673   -0.132
-    ##     suma_aq_h         1.605    0.214    7.498    0.000    2.001    0.555
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0013        0.410    0.056    7.291    0.000    0.410    0.389
-    ##    .q0007_0015        1.082    0.094   11.462    0.000    1.082    0.780
-    ##    .q0007_0020        0.598    0.068    8.797    0.000    0.598    0.569
-    ##    .q0007_0029        0.504    0.062    8.111    0.000    0.504    0.507
-    ##     suma_iri_ec      25.911    2.728    9.497    0.000   25.911    1.000
-    ##     suma_aq_h        13.007    1.165   11.165    0.000   13.007    1.000
-    ##     f_dt1             0.643    0.078    8.218    0.000    1.000    1.000
-
-Conclusión: nos quedamos con el modelo alternativo.
-
-### Emotional discontrol
-
-Escala original: 2,3,7,23
-
-``` r
-cod_ed_cov1 = "f_ed1 =~ q0007_0002+q0007_0003+q0007_0007+q0007_0023
-f_ed1~~suma_aq_r
-f_ed1~~suma_iri_pd
-"
-
-# f_ed1~~suma_iri_pd; f_ed1~~suma_aq_h
-
-mod_ed_COV1 = sem(model=cod_ed_cov1, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_ed_COV1, fit.measures = T, standardized = TRUE)
-```
-
-    ## lavaan 0.6-10 ended normally after 35 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        12
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           290         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 32.398      30.294
-    ##   Degrees of freedom                                  9           9
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.069
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               417.167     376.385
-    ##   Degrees of freedom                                15          15
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.108
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.942       0.941
-    ##   Tucker-Lewis Index (TLI)                       0.903       0.902
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.943
-    ##   Robust Tucker-Lewis Index (TLI)                            0.905
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -3186.074   -3186.074
-    ##   Scaling correction factor                                  1.004
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.032
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                6396.148    6396.148
-    ##   Bayesian (BIC)                              6440.187    6440.187
-    ##   Sample-size adjusted Bayesian (BIC)         6402.133    6402.133
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.095       0.090
-    ##   90 Percent confidence interval - lower         0.061       0.057
-    ##   90 Percent confidence interval - upper         0.131       0.126
-    ##   P-value RMSEA <= 0.05                          0.017       0.025
-    ##                                                                   
-    ##   Robust RMSEA                                               0.093
-    ##   90 Percent confidence interval - lower                     0.058
-    ##   90 Percent confidence interval - upper                     0.131
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.070       0.070
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ed1 =~                                                              
-    ##     q0007_0002        1.000                               0.478    0.456
-    ##     q0007_0003        1.978    0.297    6.661    0.000    0.945    0.824
-    ##     q0007_0007        1.851    0.262    7.059    0.000    0.884    0.743
-    ##     q0007_0023        1.025    0.198    5.179    0.000    0.489    0.499
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ed1 ~~                                                              
-    ##     suma_aq_r         0.717    0.146    4.902    0.000    1.502    0.546
-    ##     suma_iri_pd       0.776    0.210    3.695    0.000    1.624    0.287
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0002        0.867    0.074   11.779    0.000    0.867    0.792
-    ##    .q0007_0003        0.422    0.072    5.843    0.000    0.422    0.321
-    ##    .q0007_0007        0.636    0.078    8.186    0.000    0.636    0.449
-    ##    .q0007_0023        0.721    0.071   10.210    0.000    0.721    0.751
-    ##     suma_aq_r         7.575    0.669   11.315    0.000    7.575    1.000
-    ##     suma_iri_pd      32.107    2.757   11.647    0.000   32.107    1.000
-    ##     f_ed1             0.228    0.062    3.659    0.000    1.000    1.000
-
-Escala propuesta: 2,3,7,19,23
-
-``` r
-cod_ed_cov2 = "f_ed1 =~ q0007_0002+q0007_0003+q0007_0007+q0007_0023+q0007_0019
-f_ed1~~suma_aq_r
-f_ed1~~suma_iri_pd
-"
-
-mod_ed_COV2 = sem(model=cod_ed_cov2, data = datos_fa,
-                  estimator = "MLR")
-
-summary(mod_ed_COV2, fit.measures = T, standardized = TRUE)
-```
-
-    ## lavaan 0.6-10 ended normally after 33 iterations
-    ## 
-    ##   Estimator                                         ML
-    ##   Optimization method                           NLMINB
-    ##   Number of model parameters                        14
-    ##                                                       
-    ##                                                   Used       Total
-    ##   Number of observations                           290         422
-    ##                                                                   
-    ## Model Test User Model:
-    ##                                                Standard      Robust
-    ##   Test Statistic                                 49.098      45.516
-    ##   Degrees of freedom                                 14          14
-    ##   P-value (Chi-square)                            0.000       0.000
-    ##   Scaling correction factor                                   1.079
-    ##        Yuan-Bentler correction (Mplus variant)                     
-    ## 
-    ## Model Test Baseline Model:
-    ## 
-    ##   Test statistic                               457.966     413.951
-    ##   Degrees of freedom                                21          21
-    ##   P-value                                        0.000       0.000
-    ##   Scaling correction factor                                  1.106
-    ## 
-    ## User Model versus Baseline Model:
-    ## 
-    ##   Comparative Fit Index (CFI)                    0.920       0.920
-    ##   Tucker-Lewis Index (TLI)                       0.880       0.880
-    ##                                                                   
-    ##   Robust Comparative Fit Index (CFI)                         0.922
-    ##   Robust Tucker-Lewis Index (TLI)                            0.883
-    ## 
-    ## Loglikelihood and Information Criteria:
-    ## 
-    ##   Loglikelihood user model (H0)              -3602.699   -3602.699
-    ##   Scaling correction factor                                  1.033
-    ##       for the MLR correction                                      
-    ##   Loglikelihood unrestricted model (H1)             NA          NA
-    ##   Scaling correction factor                                  1.056
-    ##       for the MLR correction                                      
-    ##                                                                   
-    ##   Akaike (AIC)                                7233.398    7233.398
-    ##   Bayesian (BIC)                              7284.776    7284.776
-    ##   Sample-size adjusted Bayesian (BIC)         7240.380    7240.380
-    ## 
-    ## Root Mean Square Error of Approximation:
-    ## 
-    ##   RMSEA                                          0.093       0.088
-    ##   90 Percent confidence interval - lower         0.066       0.061
-    ##   90 Percent confidence interval - upper         0.122       0.116
-    ##   P-value RMSEA <= 0.05                          0.006       0.011
-    ##                                                                   
-    ##   Robust RMSEA                                               0.092
-    ##   90 Percent confidence interval - lower                     0.063
-    ##   90 Percent confidence interval - upper                     0.122
-    ## 
-    ## Standardized Root Mean Square Residual:
-    ## 
-    ##   SRMR                                           0.070       0.070
-    ## 
-    ## Parameter Estimates:
-    ## 
-    ##   Standard errors                             Sandwich
-    ##   Information bread                           Observed
-    ##   Observed information based on                Hessian
-    ## 
-    ## Latent Variables:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ed1 =~                                                              
-    ##     q0007_0002        1.000                               0.491    0.469
-    ##     q0007_0003        1.874    0.278    6.744    0.000    0.920    0.802
-    ##     q0007_0007        1.810    0.257    7.034    0.000    0.888    0.746
-    ##     q0007_0023        1.014    0.192    5.287    0.000    0.498    0.508
-    ##     q0007_0019        0.660    0.159    4.150    0.000    0.324    0.306
-    ## 
-    ## Covariances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##   f_ed1 ~~                                                              
-    ##     suma_aq_r         0.756    0.153    4.946    0.000    1.540    0.559
-    ##     suma_iri_pd       0.796    0.210    3.792    0.000    1.623    0.286
-    ## 
-    ## Variances:
-    ##                    Estimate  Std.Err  z-value  P(>|z|)   Std.lv  Std.all
-    ##    .q0007_0002        0.854    0.074   11.545    0.000    0.854    0.780
-    ##    .q0007_0003        0.470    0.071    6.607    0.000    0.470    0.357
-    ##    .q0007_0007        0.627    0.079    7.920    0.000    0.627    0.443
-    ##    .q0007_0023        0.712    0.069   10.257    0.000    0.712    0.742
-    ##    .q0007_0019        1.014    0.089   11.340    0.000    1.014    0.906
-    ##     suma_aq_r         7.575    0.669   11.315    0.000    7.575    1.000
-    ##     suma_iri_pd      32.107    2.757   11.647    0.000   32.107    1.000
-    ##     f_ed1             0.241    0.064    3.752    0.000    1.000    1.000
-
-Conclusión: nos quedamos con el modelo original
